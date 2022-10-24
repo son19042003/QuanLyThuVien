@@ -30,6 +30,12 @@
     <ClCompile Include="draw_line.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="read_file.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="update.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base.h">
@@ -39,6 +45,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="draw_line.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="read_file.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="student.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="book.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="update.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

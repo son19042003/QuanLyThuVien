@@ -1,18 +1,45 @@
-#include "base.h"
+#include "book.h"
 
 
-class Book1
+void Book1::setID(string id)
 {
-protected:
-	std::string id;
-	std::string name;
-	std::string category;
-	int amount;
-};
+	this->id = id;
+}
 
-
-class Book2:public Book1
+string Book1::getID()
 {
-private:
-	
-};
+	return id;
+}
+
+
+void Book1::setNameBook(string nameB)
+{
+	this->nameB = nameB;
+}
+
+string Book1::getNameBook()
+{
+	return nameB;
+}
+
+
+void Book1::setCategory(string category)
+{
+	this->category = category;
+}
+
+string Book1::getCategory()
+{
+	return category;
+}
+
+
+void Book1::setAmount(int amount)
+{
+	this->amount = amount;
+}
+
+int Book1::getAmount()
+{
+	return amount;
+}

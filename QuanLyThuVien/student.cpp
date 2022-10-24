@@ -1,34 +1,50 @@
-#include "base.h"
+#include "student.h"
 
-class Student1
+
+
+void Student1::setUsername(string username)
 {
-protected:
-	std::string hoTen;
-	std::string username;
-};
+	this->username = username;
+}
 
 
-class Student2:public Student1
+string Student1::getUsername()
 {
-private:
-	std::string password;
-	std::string borrow;
-public:
-	void setUsername(std::string username)
-	{
-		this->username = username;
-	}
-	std::string getUsername()
-	{
-		return username;
-	}
+	return username;
+}
 
-	void setPassword(std::string password)
-	{
-		this->password = password;
-	}
-	std::string getPassword()
-	{
-		return password;
-	}
-};
+
+void Student1::setName(string name)
+{
+	this->name = name;
+}
+
+
+string Student1::getName()
+{
+	return name;
+}
+
+
+void Student2::setBorrow(string borrow)
+{
+	this->borrow = borrow;
+}
+
+
+string Student2::getBorrow()
+{
+	return borrow;
+}
+
+
+void Student2::setPassword(string password)
+{
+	this->password = password;
+}
+
+
+string Student2::getPassword()
+{
+	return password;
+}

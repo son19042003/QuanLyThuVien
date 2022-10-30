@@ -146,6 +146,7 @@
     <ClCompile Include="read_file.cpp" />
     <ClCompile Include="student.cpp" />
     <ClCompile Include="update.cpp" />
+    <ClCompile Include="user.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base.h" />
@@ -155,6 +156,7 @@
     <ClInclude Include="read_file.h" />
     <ClInclude Include="student.h" />
     <ClInclude Include="update.h" />
+    <ClInclude Include="user.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

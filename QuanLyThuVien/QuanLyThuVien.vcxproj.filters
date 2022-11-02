@@ -18,10 +18,10 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="book.cpp">
+    <ClCompile Include="sach.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="student.cpp">
+    <ClCompile Include="sinhvien.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="public_func.cpp">
@@ -33,10 +33,13 @@
     <ClCompile Include="read_file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="update.cpp">
+    <ClCompile Include="muonTra.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="user.cpp">
+    <ClCompile Include="maSo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="date.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,16 +56,19 @@
     <ClInclude Include="read_file.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="student.h">
+    <ClInclude Include="sinhvien.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="book.h">
+    <ClInclude Include="sach.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="update.h">
+    <ClInclude Include="muonTra.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="user.h">
+    <ClInclude Include="maSo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="date.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -11,12 +11,12 @@ string SV::getHoten()
 	return hoTen;
 }
 
-void SV::setNgayHHT(string ngayHHT)
+void SV::setNgayHHT(date ngayHHT)
 {
 	this->ngayHHT = ngayHHT;
 }
 
-string SV::getNgayHHT()
+date SV::getNgayHHT()
 {
 	return ngayHHT;
 }
@@ -32,19 +32,48 @@ string SV::getLop()
 }
 
 
-bool SV::checkCard(string x)
+bool SV::checkCard(date x)
 {
-	return true;
+	if (soSanhNgay(ngayHHT, x) == true)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 void SV::themSV()
 {
+	cout << "\nNhap ma sinh vien: ";
+	cin >> mssv;
 	cout << "\nNhap ho ten: ";
-	cin.ignore(1);
+	cin.ignore(0);
 	getline(cin, hoTen);
+	cout << "\nNhap ngay het han the: ";
+	nhapNgay(ngayHHT);
+	cout << "\nLop: ";
+	cin.ignore(0);
+	getline(cin, lop);
 }
 
 void SV::xuatSV()
 {
-	cout << "\nHo va ten: " << hoTen << "\n";
+	
+}
+
+void SV::xoaSV()
+{
+
+}
+
+void SV::suaSV()
+{
+
+}
+
+SV SV::timKiemSV()
+{
+
 }

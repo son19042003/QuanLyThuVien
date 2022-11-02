@@ -9,6 +9,8 @@ typedef struct Date
 }date;
 
 
-void nhapNgay(date x);
+void nhapNgay(date &x);
+
+void xuatNgay(date x);
 
 bool soSanhNgay(date x1, date x2);

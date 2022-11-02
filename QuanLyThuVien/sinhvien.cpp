@@ -44,36 +44,39 @@ bool SV::checkCard(date x)
 	}
 }
 
-void SV::themSV()
+void SV::themSV(SV sv)
 {
 	cout << "\nNhap ma sinh vien: ";
-	cin >> mssv;
+	cin >> sv.mssv;
 	cout << "\nNhap ho ten: ";
 	cin.ignore(0);
-	getline(cin, hoTen);
+	getline(cin, sv.hoTen);
 	cout << "\nNhap ngay het han the: ";
-	nhapNgay(ngayHHT);
+	nhapNgay(sv.ngayHHT);
 	cout << "\nLop: ";
 	cin.ignore(0);
-	getline(cin, lop);
+	getline(cin, sv.lop);
 }
 
-void SV::xuatSV()
+void SV::xuatSV(SV sv)
 {
 	
 }
 
-void SV::xoaSV()
+void SV::xoaSV(SV sv)
 {
 
 }
 
-void SV::suaSV()
+void SV::suaSV(SV sv)
 {
 
 }
 
-SV SV::timKiemSV()
+SV SV::timKiemSV(string x)
 {
+	cout << "\nNhap ten hoac mssv can tim: ";
+	cin.ignore(0);
+	getline(cin, x);
 
 }

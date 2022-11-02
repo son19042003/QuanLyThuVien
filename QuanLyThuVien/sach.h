@@ -15,10 +15,10 @@ public:
 	string getTheLoai();
 	void setSL(int soLuong);
 	int getSL();
-	void themS();
-	void xoaS();
-	void suaS();
-	void xuatS();
-	Sach timS();
-	bool kiemTraS();
+	void themS(Sach s);
+	void xoaS(Sach s);
+	void suaS(Sach s);
+	void xuatS(Sach s);
+	Sach timS(string x);
+	bool kiemTraSL(int x);
 };

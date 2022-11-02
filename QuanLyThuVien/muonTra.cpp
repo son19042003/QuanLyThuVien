@@ -30,3 +30,48 @@ date MuonTra::getNgayT()
 {
 	return ngayT;
 }
+
+MuonTra::MuonTra()
+{
+	this->ngayM.ngay = 1;
+	this->ngayM.thang = 1;
+	this->ngayM.nam = 1;
+	this->ngayHT.ngay = 1;
+	this->ngayHT.thang = 1;
+	this->ngayHT.nam = 1;
+	this->ngayT.ngay = 1;
+	this->ngayT.thang = 1;
+	this->ngayT.nam = 1;
+}
+
+MuonTra::~MuonTra()
+{
+
+}
+
+
+void MuonTra::them(MuonTra mt)
+{
+	cout << "\nNgay muon: ";
+	nhapNgay(mt.ngayM);
+	cout << "\nNgay hen tra: ";
+	nhapNgay(mt.ngayHT);
+}
+
+void MuonTra::xoa(MuonTra mt)
+{
+
+}
+
+void MuonTra::xuat(MuonTra mt)
+{
+
+}
+
+void MuonTra::sua(MuonTra mt)
+{
+	cout << "\nNgay hen tra: ";
+	nhapNgay(mt.ngayHT);
+	cout << "\nNgay tra: ";
+	nhapNgay(mt.ngayT);
+}

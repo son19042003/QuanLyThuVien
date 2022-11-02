@@ -1,7 +1,7 @@
 #include "date.h"
 
 
-void nhapNgay(date x)
+void nhapNgay(date &x)
 {
 nhap:
 	do
@@ -55,6 +55,12 @@ nhap:
 	default:
 		break;
 	}
+}
+
+
+void xuatNgay(date x)
+{
+	cout << x.ngay << "/" << x.thang << "/" << x.nam;
 }
 
 

@@ -10,14 +10,16 @@ private:
 	date ngayHT;
 	date ngayT;
 public:
+	MuonTra();
+	~MuonTra();
 	void setNgayM(date ngayM);
 	date getNgayM();
 	void setNgayHT(date ngayHT);
 	date getNgayHT();
 	void setNgayT(date ngayT);
 	date getNgayT();
-	void them();
-	void xoa();
-	void xuat();
-	void sua();
+	void them(MuonTra mt);
+	void xoa(MuonTra mt);
+	void xuat(MuonTra mt);
+	void sua(MuonTra mt);
 };

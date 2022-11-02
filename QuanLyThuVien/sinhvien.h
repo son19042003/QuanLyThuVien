@@ -17,10 +17,10 @@ public:
 	void setLop(string lop);
 	string getLop();
 	bool checkCard(date x);
-	void themSV();
-	void xoaSV();
-	void xuatSV();
-	void suaSV();
-	SV timKiemSV();
+	void themSV(SV sv);
+	void xoaSV(SV sv);
+	void xuatSV(SV sv);
+	void suaSV(SV sv);
+	SV timKiemSV(string x);
 };
 

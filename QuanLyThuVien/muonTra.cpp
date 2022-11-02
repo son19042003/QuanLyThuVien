@@ -65,7 +65,14 @@ void MuonTra::xoa(MuonTra mt)
 
 void MuonTra::xuat(MuonTra mt)
 {
-
+	cout << left << setw(15) << mt.maS;
+	cout << left << setw(15) << mt.mssv;
+	cout << left << setw(15);
+	xuatNgay(mt.ngayM);
+	cout << left << setw(15);
+	xuatNgay(mt.ngayHT);
+	cout << left << setw(15);
+	xuatNgay(mt.ngayT);
 }
 
 void MuonTra::sua(MuonTra mt)

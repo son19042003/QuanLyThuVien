@@ -50,35 +50,47 @@ MuonTra::~MuonTra()
 }
 
 
-void MuonTra::them(MuonTra mt)
+void MuonTra::them()
 {
+	cout << "\nMa sinh vien: ";
+	cin.ignore();
+	getline(cin, mssv);
+	cout << "\nHo ten nguoi muon: ";
+	cin.ignore();
+	getline(cin, hoTen);
+	cout << "\nLop: ";
+	cin.ignore();
+	getline(cin, lop);
+	cout << "\nMa sach muon: ";
+	cin.ignore();
+	getline(cin, maS);
+	cout << "\nTen sach muon: ";
+	cin.ignore();
+	getline(cin, tenS);
+	cout << "\nThe loai: ";
+	cin.ignore();
+	getline(cin, theLoai);
 	cout << "\nNgay muon: ";
-	nhapNgay(mt.ngayM);
+	cin >> ngayM.ngay >> ngayM.thang >> ngayM.nam;
 	cout << "\nNgay hen tra: ";
-	nhapNgay(mt.ngayHT);
+	cin >> ngayHT.ngay >> ngayHT.thang >> ngayHT.nam;
 }
 
-void MuonTra::xoa(MuonTra mt)
+void MuonTra::xoa()
 {
 
 }
 
-void MuonTra::xuat(MuonTra mt)
+void MuonTra::xuat()
 {
-	cout << left << setw(15) << mt.maS;
-	cout << left << setw(15) << mt.mssv;
-	cout << left << setw(15);
-	xuatNgay(mt.ngayM);
-	cout << left << setw(15);
-	xuatNgay(mt.ngayHT);
-	cout << left << setw(15);
-	xuatNgay(mt.ngayT);
+	cout << left << setw(15) << mssv << left << setw(20) << hoTen << left << setw(10) << lop << left << setw(10) << maS << left << setw(15) << tenS << left << setw(15) << theLoai;
+	xuatNgay(ngayM);
+	cout << "\t";
+	xuatNgay(ngayHT);
 }
 
-void MuonTra::sua(MuonTra mt)
+void MuonTra::sua(string x)
 {
-	cout << "\nNgay hen tra: ";
-	nhapNgay(mt.ngayHT);
 	cout << "\nNgay tra: ";
-	nhapNgay(mt.ngayT);
+	cin >> ngayT.ngay >> ngayT.thang >> ngayT.nam;
 }

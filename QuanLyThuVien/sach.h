@@ -1,24 +1,32 @@
 #pragma once
-#include "maSo.h"
+#include "base.h"
+#include "draw_line.h"
 
 
-class Sach:private MaSo
+class Sach
 {
-private:
+protected:
+	string maS;
 	string tenS;
 	string theLoai;
+	string tacGia;
+	int namXB;
 	int soLuong;
 public:
+	void setMaS(string maS);
+	string getMaS();
 	void setTenS(string tenS);
 	string getTenS();
 	void setTheLoai(string theLoai);
 	string getTheLoai();
+	void setTacGia(string tacGia);
+	string getTacGia();
+	void setNamXB(int namXB);
+	int getNamXB();
 	void setSL(int soLuong);
 	int getSL();
-	void themS(Sach s);
-	void xoaS(Sach s);
-	void suaS(Sach s);
-	void xuatS(Sach s);
-	Sach timS(string x);
-	bool kiemTraSL(int x);
+	void themS();
+	void xoaS();
+	void xuatS();
+	bool timS(string x);
 };

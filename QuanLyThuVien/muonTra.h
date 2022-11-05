@@ -1,9 +1,12 @@
 #pragma once
-#include "maSo.h"
+#include "sach.h"
+#include "sinhvien.h"
 #include "date.h"
+#include "base.h"
+#include <iomanip>
 
 
-class MuonTra:private MaSo
+class MuonTra:private SV, private Sach
 {
 private:
 	date ngayM;
@@ -18,8 +21,8 @@ public:
 	date getNgayHT();
 	void setNgayT(date ngayT);
 	date getNgayT();
-	void them(MuonTra mt);
-	void xoa(MuonTra mt);
-	void xuat(MuonTra mt);
-	void sua(MuonTra mt);
+	void them();
+	void xoa();
+	void xuat();
+	void sua(string x);
 };

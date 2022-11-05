@@ -30,16 +30,16 @@
     <ClCompile Include="draw_line.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="read_file.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="muonTra.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="maSo.cpp">
+    <ClCompile Include="date.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="date.cpp">
+    <ClCompile Include="base.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="xuly.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,9 +53,6 @@
     <ClInclude Include="draw_line.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="read_file.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="sinhvien.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -65,10 +62,13 @@
     <ClInclude Include="muonTra.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="maSo.h">
+    <ClInclude Include="date.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="date.h">
+    <ClInclude Include="key.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="xuly.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

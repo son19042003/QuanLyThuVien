@@ -1,15 +1,18 @@
 #pragma once
-#include "maSo.h"
+#include "base.h"
 #include "date.h"
 
 
-class SV:private MaSo
+class SV
 {
-private:
+protected:
+	string mssv;
 	string hoTen;
 	date ngayHHT;
 	string lop;
 public:
+	void setMssv(string mssv);
+	string getMssv();
 	void setHoten(string hoTen);
 	string getHoten();
 	void setNgayHHT(date ngayHHT);
@@ -17,10 +20,10 @@ public:
 	void setLop(string lop);
 	string getLop();
 	bool checkCard(date x);
-	void themSV(SV sv);
-	void xoaSV(SV sv);
-	void xuatSV(SV sv);
-	void suaSV(SV sv);
-	SV timKiemSV(string x);
+	void themSV();
+	void xoaSV();
+	void xuatSV();
+	bool timKiemSV(string x);
+	void doc_file(fstream& filein);
+	void ghi_file(fstream& filein);
 };
-

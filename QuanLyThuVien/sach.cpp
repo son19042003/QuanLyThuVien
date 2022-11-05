@@ -1,6 +1,17 @@
 #include "sach.h"
 
 
+
+void Sach::setMaS(string maS)
+{
+	this->maS = maS;
+}
+
+string Sach::getMaS()
+{
+	return maS;
+}
+
 void Sach::setTenS(string tenS)
 {
 	this->tenS = tenS;
@@ -22,6 +33,25 @@ string Sach::getTheLoai()
 	return theLoai;
 }
 
+void Sach::setTacGia(string tacGia)
+{
+	this->tacGia = tacGia;
+}
+
+string Sach::getTacGia()
+{
+	return tacGia;
+}
+
+void Sach::setNamXB(int namXB)
+{
+	this->namXB = namXB;
+}
+
+int Sach::getNamXB()
+{
+	return namXB;
+}
 
 void Sach::setSL(int soLuong)
 {
@@ -34,48 +64,40 @@ int Sach::getSL()
 }
 
 
-void Sach::themS(Sach s)
+void Sach::themS()
 {
 	cout << "\nMa sach: ";
-	cin.ignore(0);
-	getline(cin, s.maS);
+	cin.ignore();
+	getline(cin, maS);
 	cout << "\nTen sach: ";
-	cin.ignore(0);
-	getline(cin, s.tenS);
+	cin.ignore();
+	getline(cin, tenS);
 	cout << "\nThe loai: ";
-	cin.ignore(0);
-	getline(cin, s.theLoai);
+	cin.ignore();
+	getline(cin, theLoai);
+	cout << "\nTen tac gia: ";
+	cin.ignore();
+	getline(cin, tacGia);
+	cout << "\nNam xuat ban: ";
+	cin >> namXB;
 	cout << "\nSo luong: ";
-	cin >> s.soLuong;
+	cin >> soLuong;
 }
 
-void Sach::xoaS(Sach s)
+void Sach::xoaS()
 {
-
+	
 }
 
-void Sach::suaS(Sach s)
+void Sach::xuatS()
 {
-
+	cout << "\n";
+	cout << left << setw(15) << maS << left << setw(20) << tenS << left << setw(15) << theLoai << left << setw(20) << tacGia << left << setw(7) << namXB << left << setw(5) << soLuong;
 }
 
-void Sach::xuatS(Sach s)
+bool Sach::timS(string x)
 {
-
-}
-
-Sach Sach::timS(string x)
-{
-	cout << "\nNhap vao ma sach, ten sach hoac the loai sach: ";
-	cin.ignore(0);
-	getline(cin, x);
-}
-
-bool Sach::kiemTraSL(int x)
-{
-	cout << "\nNhap vao so luong sach da dem duoc: ";
-	cin >> x;
-	if (x == soLuong)
+	if (x == maS)
 	{
 		return true;
 	}

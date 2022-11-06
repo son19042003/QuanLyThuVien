@@ -27,4 +27,7 @@ public:
 	void xoaS();
 	void xuatS();
 	bool timS(string x);
+	void docFileS(fstream& f);
+	void ghiFileS(fstream& f);
+	int tongS();
 };

@@ -70,13 +70,10 @@ void Sach::themS()
 	cin.ignore();
 	getline(cin, maS);
 	cout << "\nTen sach: ";
-	cin.ignore();
 	getline(cin, tenS);
 	cout << "\nThe loai: ";
-	cin.ignore();
 	getline(cin, theLoai);
 	cout << "\nTen tac gia: ";
-	cin.ignore();
 	getline(cin, tacGia);
 	cout << "\nNam xuat ban: ";
 	cin >> namXB;
@@ -91,8 +88,7 @@ void Sach::xoaS()
 
 void Sach::xuatS()
 {
-	cout << "\n";
-	cout << left << setw(15) << maS << left << setw(20) << tenS << left << setw(15) << theLoai << left << setw(20) << tacGia << left << setw(7) << namXB << left << setw(5) << soLuong;
+	cout << left << setw(10) << maS << left << setw(20) << tenS << left << setw(15) << theLoai << left << setw(20) << tacGia << left << setw(17) << namXB << left << setw(8) << soLuong;
 }
 
 bool Sach::timS(string x)
@@ -105,4 +101,28 @@ bool Sach::timS(string x)
 	{
 		return false;
 	}
+}
+
+void Sach::docFileS(fstream& f) {
+	getline(f, maS, ',');
+	f.seekg(1, 1);
+	getline(f, tenS, ',');
+	f.seekg(1, 1);
+	getline(f, theLoai, ',');
+	f.seekg(1, 1);
+	getline(f, tacGia, ',');
+	f.seekg(1, 1);
+	f >> namXB;
+	f.seekg(1, 1);
+	f >> soLuong;
+
+	string temp;
+	getline(f, temp);
+}
+
+void Sach::ghiFileS(fstream& f)
+{
+	f.open("Sach.txt", ios::app);
+	f << maS << ", " << tenS << ", " << theLoai << ", " << tacGia << ", " << namXB << ", " << soLuong << endl;
+	f.close();
 }

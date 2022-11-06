@@ -67,7 +67,7 @@ string SV::checkCard(date x)
 		{
 			if (ngayHHT.getNgay() <= x.getNgay())
 			{
-				return "Khoa";
+				return "Da Khoa";
 			}
 			else
 			{
@@ -105,7 +105,6 @@ void SV::themSV()
 	//cin.ignore();
 	getline(cin, lop);
 	cout << "\nNhap ngay het han the: ";
-	//nhapNgay(ngayHHT);
 	int ngay;
 	cin >> ngay;
 	ngayHHT.setNgay(ngay);
@@ -115,19 +114,12 @@ void SV::themSV()
 	int nam;
 	cin >> nam;
 	ngayHHT.setNam(nam);
-	fstream filein;
-	ghi_file(filein);
 }
 
 void SV::xuatSV()
 {
 	fflush(stdin);
 	cout << left << setw(15) << mssv << left << setw(25) << hoTen << left << setw(15) << lop << right << setw(2) << ngayHHT.getNgay() << "/" << right << setw(2) << ngayHHT.getThang() << "/" << left << setw(14) << ngayHHT.getNam();
-}
-
-void SV::xoaSV()
-{
-	
 }
 
 bool SV::timKiemSV(string x)

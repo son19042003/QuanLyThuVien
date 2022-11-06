@@ -22,7 +22,6 @@ public:
 	string getLop();
 	string checkCard(date x);
 	void themSV();
-	void xoaSV();
 	void xuatSV();
 	bool timKiemSV(string x);
 	void doc_file(fstream& filein);

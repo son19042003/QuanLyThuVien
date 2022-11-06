@@ -11,9 +11,9 @@ private:
 	date ngayM;
 	date ngayHT;
 	date ngayT;
+	int sl;
 public:
 	MuonTra();
-	~MuonTra();
 	void setNgayM(date ngayM);
 	date getNgayM();
 	void setNgayHT(date ngayHT);
@@ -24,4 +24,9 @@ public:
 	void xoa();
 	void xuat();
 	void sua(string x);
+	void docfileMT(fstream& f);
+	void ghifileMT(fstream& f);
+	int tinhSL();
+	int tinhSL_ten(string x);
+	~MuonTra();
 };

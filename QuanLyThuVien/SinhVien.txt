@@ -1,12 +1,3 @@
-12345
-son c
-cnnn n
-19/4/2023
-12346
-thh n
-cn t
-19/4/2023
-12666
-adhi b
-cntt t
-4/4/2023
+12345, Pham Thanh Son, CNTT K62, 19/4/2023
+12346, Pham Tu Thanh, CNTT K62, 19/4/2023
+12347, Nguyen Van A, CNTT K63, 5/5/2023

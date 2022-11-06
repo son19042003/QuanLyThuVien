@@ -11,6 +11,7 @@ protected:
 	date ngayHHT;
 	string lop;
 public:
+	SV();
 	void setMssv(string mssv);
 	string getMssv();
 	void setHoten(string hoTen);
@@ -19,11 +20,12 @@ public:
 	date getNgayHHT();
 	void setLop(string lop);
 	string getLop();
-	bool checkCard(date x);
+	string checkCard(date x);
 	void themSV();
 	void xoaSV();
 	void xuatSV();
 	bool timKiemSV(string x);
 	void doc_file(fstream& filein);
 	void ghi_file(fstream& filein);
+	~SV();
 };

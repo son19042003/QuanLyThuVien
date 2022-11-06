@@ -1,5 +1,5 @@
 #include "sinhvien.h"
-#include <string>
+
 
 
 
@@ -44,40 +44,49 @@ string SV::getLop()
 }
 
 
-bool SV::checkCard(date x)
-{
-	if (soSanhNgay(ngayHHT, x) == true)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
+//bool SV::checkCard(date x)
+//{
+//	if (soSanhNgay(ngayHHT, x) == true)
+//	{
+//		return true;
+//	}
+//	else
+//	{
+//		return false;
+//	}
+//}
 
 void SV::themSV()
 {
 	cout << "\nNhap ma sinh vien: ";
-	cin.ignore(1);
+	cin.ignore();
 	getline(cin, mssv);
 	cout << "\nNhap ho ten: ";
-	cin.ignore(0);
+	//cin.ignore();
 	getline(cin, hoTen);
 	cout << "\nLop: ";
-	cin.ignore(0);
+	//cin.ignore();
 	getline(cin, lop);
 	cout << "\nNhap ngay het han the: ";
-	nhapNgay(ngayHHT);
+	//nhapNgay(ngayHHT);
+	int ngay;
+	cin >> ngay;
+	ngayHHT.setNgay(ngay);
+	int thang;
+	cin >> thang;
+	ngayHHT.setThang(thang);
+	int nam;
+	cin >> nam;
+	ngayHHT.setNam(nam);
 	fstream filein;
 	ghi_file(filein);
 }
 
 void SV::xuatSV()
 {
-	cout << "\n";
-	cout << left << setw(15) << mssv << left << setw(25) << hoTen << left << setw(10) << lop;
-	xuatNgay(ngayHHT);
+	fflush(stdin);
+	cout << left << setw(15) << mssv << left << setw(25) << hoTen << left << setw(10) << lop << "\n";
+	//xuatNgay(ngayHHT);
 }
 
 void SV::xoaSV()
@@ -99,27 +108,31 @@ bool SV::timKiemSV(string x)
 
 void SV::doc_file(fstream& filein)
 {
-	filein.open("SinhVien.txt", ios::in);
-	while (!filein.eof())
-	{
-		getline(filein, mssv, ',');
-		filein.seekg(1, 1);
-		getline(filein, hoTen, ',');
-		filein.seekg(1, 1);
-		getline(filein, lop, ',');
-		filein.seekg(1, 1);
-		filein >> ngayHHT.ngay;
-		filein.seekg(1, 1);
-		filein >> ngayHHT.thang;
-		filein.seekg(1, 1);
-		filein >> ngayHHT.nam;
-	}
-	filein.close();
+	getline(filein, mssv);
+	getline(filein, hoTen);
+	getline(filein, lop);
+	/*filein.seekg(1, 1);
+	filein >> ngayHHT.ngay;
+	filein.seekg(1, 1);
+	filein >> ngayHHT.thang;
+	filein.seekg(1, 1);
+	filein >> ngayHHT.nam;*/
+	int ngay;
+	filein >> ngay;
+	ngayHHT.setNgay(ngay);
+	filein.seekg(1, 1);
+	int thang;
+	filein >> thang;
+	ngayHHT.setThang(thang);
+	filein.seekg(1, 1);
+	int nam;
+	filein >> nam;
+	ngayHHT.setNam(nam);
 }
 
 void SV::ghi_file(fstream& filein)
 {
 	filein.open("SinhVien.txt", ios::app);
-	filein << mssv << ", " << hoTen << ", " << lop << ", " << ngayHHT.ngay << "/" << ngayHHT.thang << "/" << ngayHHT.nam << endl;
+	filein << mssv << "\n" << hoTen << "\n" << lop << "\n" << ngayHHT.getNgay() << "/" << ngayHHT.getThang() << "/" << ngayHHT.getNam() << endl;
 	filein.close();
 }

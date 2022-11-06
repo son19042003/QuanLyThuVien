@@ -24,33 +24,15 @@
     <ClCompile Include="sinhvien.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="public_func.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="draw_line.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="muonTra.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="date.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="base.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="xuly.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="public_func.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="draw_line.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sinhvien.h">
@@ -63,12 +45,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="date.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="key.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="xuly.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

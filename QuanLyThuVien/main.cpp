@@ -2,6 +2,15 @@
 #include "sach.h"
 #include "muonTra.h"
 #include <conio.h>
+#include <stdio.h>
+
+/*
+Nhom 23 - CQ.62.CNTT:
+	Pham Tu Thanh (Nhom truong) - 6251071091
+	Pham Thanh Son - 6251071083
+	Le Cong Tuan - 6251071112
+	Pham Nhat Tan - 6251071086
+*/
 
 //Sinh Vien
 void themSV(SV sv[], int& n)
@@ -36,7 +45,7 @@ void doc_file_SV(SV sv[], int &n)
 		dem++;
 	}
 	filein.close();
-	n = dem-1;
+	n = dem - 1;
 	filein.open("SinhVien.txt", ios::in);
 	for (int i = 0; i < n; i++)
 	{
@@ -85,6 +94,54 @@ void timKiem_ds(SV sv[], int n)
 		{
 			sv[i].xuatSV();
 		}
+	}
+}
+
+void updateSV(SV sv[], int n)
+{
+	int k = n-1;
+	fstream f1, f2;
+	f1.open("SinhVien.txt", ios::in);
+	f2.open("SinhVien_new.txt", ios::app);
+	for (int i = 0; i < k; i++)
+	{
+		sv[i].ghi_file(f2);
+	}
+	f1.close();
+	f2.close();
+
+	remove("SinhVien.txt");
+	rename("SinhVien_new.txt", "SinhVien.txt");
+}
+
+void xoaSV_ID(SV sv[], int n)
+{
+	string found;
+	cout << "\nNhap vao ma sinh vien cua sinh vien can xoa: ";
+	cin.ignore();
+	getline(cin, found);
+	int tmp = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (sv[i].getMssv() == found)
+		{
+			tmp = 1;
+			for (int j = i; j < n; j++)
+			{
+				sv[j] = sv[j + 1];
+			}
+			cout << "\nDa xoa sinh vien nay!";
+			break;
+		}
+	}
+	if (tmp == 0)
+	{
+		cout << "\nSinh vien co mssv nay khong ton tai";
+	}
+	else
+	{
+		//n--;
+		updateSV(sv, n);
 	}
 }
 
@@ -242,7 +299,7 @@ begin:
 	cout << "\n\t\t\t\t\t    ||                  2. Xuat thong tin sinh vien                       ||";
 	cout << "\n\t\t\t\t\t    ||                  3. Kiem tra tinh trang the                        ||";
 	cout << "\n\t\t\t\t\t    ||                  4. Tim kiem sinh vien                             ||";
-	cout << "\n\t\t\t\t\t    ||                  5.                                                ||";
+	cout << "\n\t\t\t\t\t    ||                  5. Xoa sinh vien theo MSSV                        ||";
 	cout << "\n\t\t\t\t\t    ||                  6.                                                ||";
 	cout << "\n\t\t\t\t\t    ||                  7.                                                ||";
 	cout << "\n\t\t\t\t\t    ||                  8.                                                ||";
@@ -263,6 +320,7 @@ begin:
 			cin >> chon;
 		k = false;
 	} while ((chon < '1') || (chon > '9'));
+	//doc_file_SV(sv, n);
 	switch (chon) {
 	case '1':
 		themSV(sv, n);
@@ -300,6 +358,9 @@ begin:
 		pressAnyKey();
 		break;
 	case '5':
+		doc_file_SV(sv, n);
+		xoaSV_ID(sv, n);
+		//luuSVdaThem(sv, f, n);
 		pressAnyKey();
 		break;
 	case '6':
@@ -546,94 +607,6 @@ begin:
 	goto begin;
 end:;
 }
-
-//void Menu()
-//{
-//	label:
-//	int x;
-//	cout << "\n\t\t\t\t\t                              CHUONG TRINH QUAN LY THU VIEN ";
-//	cout << "\n\t\t\t\t\t    ========================================================================";
-//	cout << "\n\t\t\t\t\t    ||                        1. Quan ly sinh vien                        ||";
-//	cout << "\n\t\t\t\t\t    ||                        2. Quan ly sach                             ||";
-//	cout << "\n\t\t\t\t\t    ||                        3. Quan ly muon tra                         ||";
-//	cout << "\n\t\t\t\t\t    ||                        0. Thoat                                    ||";
-//	cout << "\n\t\t\t\t\t    ========================================================================";
-//	cout << "\n\t\t\t\t\t    ||                              Nhom 23                               ||";
-//	cout << "\n\t\t\t\t\t    ========================================================================";
-//	cout << "\n\t\t\t\t\t                   Vui Long Chon Cac Phim Chuc Nang Tuong Ung   ";
-//	cin >> x;
-//	system("cls");
-//	switch (x) {
-//	case 1:
-//		int k;
-//		cout << "\n\t\t\t\t\t    ========================================================================";
-//		cout << "\n\t\t\t\t\t    ||                          QUAN LY SINH VIEN                         ||";
-//		cout << "\n\t\t\t\t\t    ========================================================================";
-//		cout << "\n\t\t\t\t\t    ||                  1. Them sinh vien                                 ||";
-//		cout << "\n\t\t\t\t\t    ||                  2. Xuat thong tin sinh vien                       ||";
-//		cout << "\n\t\t\t\t\t    ||                  3. Kiem tra tinh trang the                        ||";
-//		cout << "\n\t\t\t\t\t    ||                  4. Tim kiem sinh vien                             ||";
-//		cout << "\n\t\t\t\t\t    ||                  5.                                                ||";
-//		cout << "\n\t\t\t\t\t    ||                  6.                                                ||";
-//		cout << "\n\t\t\t\t\t    ||                  7.                                                ||";
-//		cout << "\n\t\t\t\t\t    ||                  8.                                                ||";
-//		cout << "\n\t\t\t\t\t    ||                  9. Tro ve                                         ||";
-//		cout << "\n\t\t\t\t\t    ||                  0. Thoat                                          ||";
-//		cout << "\n\t\t\t\t\t    ========================================================================";
-//		cout << "\n\t\t\t\t\t    ||                              Nhom 23                               ||";
-//		cout << "\n\t\t\t\t\t    ========================================================================";
-//		cout << "\n\t\t\t\t\t                   Vui Long Chon Cac Phim Chuc Nang Tuong Ung   ";
-//		cin >> k;
-//		system("cls");
-//		switch (k)
-//		{
-//		case 0:
-//			break;
-//		case 9:
-//			goto label;
-//		}
-//		break;
-//	case 2:
-//		cout << "\n\t\t\t\t\t    ========================================================================";
-//		cout << "\n\t\t\t\t\t    ||                          QUAN LY SACH                              ||";
-//		cout << "\n\t\t\t\t\t    ========================================================================";
-//		cout << "\n\t\t\t\t\t    ||1 .                                                                 ||";
-//		cout << "\n\t\t\t\t\t    ||2 .                                                                 ||";
-//		cout << "\n\t\t\t\t\t    ||3 .                                                                 ||";
-//		cout << "\n\t\t\t\t\t    ||4 .                                                                 ||";
-//		cout << "\n\t\t\t\t\t    ||5 .                                                                 ||";
-//		cout << "\n\t\t\t\t\t    ||6 .                                                                 ||";
-//		cout << "\n\t\t\t\t\t    ||7 .                                                                 ||";
-//		cout << "\n\t\t\t\t\t    ||8 .                                                                 ||";
-//		cout << "\n\t\t\t\t\t    ||9 .                                                                 ||";
-//		cout << "\n\t\t\t\t\t    ||0 .                                                                 ||";
-//		cout << "\n\t\t\t\t\t    ========================================================================";
-//		cout << "\n\t\t\t\t\t    ||                              Nhom 23                               ||";
-//		cout << "\n\t\t\t\t\t    ========================================================================";
-//		break;
-//	case 3:
-//		cout << "\n\t\t\t\t\t    ========================================================================";
-//		cout << "\n\t\t\t\t\t    ||                          QUAN LY MUON TRA                          ||";
-//		cout << "\n\t\t\t\t\t    ========================================================================";
-//		cout << "\n\t\t\t\t\t    ||1 .                                                                 ||";
-//		cout << "\n\t\t\t\t\t    ||2 .                                                                 ||";
-//		cout << "\n\t\t\t\t\t    ||3 .                                                                 ||";
-//		cout << "\n\t\t\t\t\t    ||4 .                                                                 ||";
-//		cout << "\n\t\t\t\t\t    ||5 .                                                                 ||";
-//		cout << "\n\t\t\t\t\t    ||6 .                                                                 ||";
-//		cout << "\n\t\t\t\t\t    ||7 .                                                                 ||";
-//		cout << "\n\t\t\t\t\t    ||8 .                                                                 ||";
-//		cout << "\n\t\t\t\t\t    ||9 .                                                                 ||";
-//		cout << "\n\t\t\t\t\t    ||0 .                                                                 ||";
-//		cout << "\n\t\t\t\t\t    ========================================================================";
-//		cout << "\n\t\t\t\t\t    ||                              Nhom 23                               ||";
-//		cout << "\n\t\t\t\t\t    ========================================================================";
-//		break;
-//	case 0:
-//		break;
-//	default: cout << "ERROL: again!";
-//	}
-//}
 
 
 int main()

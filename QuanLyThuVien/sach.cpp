@@ -88,7 +88,7 @@ void Sach::xoaS()
 
 void Sach::xuatS()
 {
-	cout << left << setw(10) << maS << left << setw(20) << tenS << left << setw(15) << theLoai << left << setw(20) << tacGia << left << setw(17) << namXB << left << setw(8) << soLuong;
+	cout << left << setw(2) << "|" << left << setw(10) << maS << left << setw(2) << "|" << left << setw(20) << tenS << left << setw(2) << "|" << left << setw(15) << theLoai << left << setw(2) << "|" << left << setw(20) << tacGia << left << setw(2) << "|" << left << setw(17) << namXB << left << setw(2) << "|" << left << setw(8) << soLuong << left << setw(2) << "|";
 }
 
 bool Sach::timS(string x)
@@ -125,4 +125,12 @@ void Sach::ghiFileS(fstream& f)
 	f.open("Sach.txt", ios::app);
 	f << maS << ", " << tenS << ", " << theLoai << ", " << tacGia << ", " << namXB << ", " << soLuong << endl;
 	f.close();
+}
+
+int Sach::tongS_Conlai()
+{
+	int k=0;
+	/*MuonTra tmp;
+	k = soLuong - tmp*/
+	return k;
 }

@@ -5,7 +5,7 @@
 #include "base.h"
 
 
-class MuonTra:private SV, private Sach
+class MuonTra:public SV, public Sach
 {
 private:
 	date ngayM;
@@ -20,13 +20,15 @@ public:
 	date getNgayHT();
 	void setNgayT(date ngayT);
 	date getNgayT();
+	void setSL(int sl);
+	int getSL();
 	void them();
 	void xoa();
 	void xuat();
-	void sua(string x);
+	//void sua(string x);
 	void docfileMT(fstream& f);
 	void ghifileMT(fstream& f);
 	int tinhSL();
-	int tinhSL_ten(string x);
 	~MuonTra();
+	string kiemTraMT(date x);
 };

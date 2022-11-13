@@ -65,7 +65,7 @@ string SV::checkCard(date x)
 	{
 		if (ngayHHT.getThang() == x.getThang())
 		{
-			if (ngayHHT.getNgay() <= x.getNgay())
+			if (ngayHHT.getNgay() < x.getNgay())
 			{
 				return "Da Khoa";
 			}
@@ -119,7 +119,7 @@ void SV::themSV()
 void SV::xuatSV()
 {
 	fflush(stdin);
-	cout << left << setw(15) << mssv << left << setw(25) << hoTen << left << setw(15) << lop << right << setw(2) << ngayHHT.getNgay() << "/" << right << setw(2) << ngayHHT.getThang() << "/" << left << setw(14) << ngayHHT.getNam();
+	cout << left << setw(2) << "|" << left << setw(15) << mssv << left << setw(2) << "|" << left << setw(25) << hoTen << left << setw(2) << "|" << left << setw(15) << lop << left << setw(2) << "|" << right << setw(2) << ngayHHT.getNgay() << "/" << right << setw(2) << ngayHHT.getThang() << "/" << left << setw(14) << ngayHHT.getNam() << left << setw(2) << "|";
 }
 
 bool SV::timKiemSV(string x)

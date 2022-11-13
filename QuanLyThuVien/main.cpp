@@ -57,7 +57,9 @@ void doc_file_SV(SV sv[], int &n)
 
 void xuatDSSV(SV sv[], int n)
 {
-	cout << left << setw(15) << "Ma sinh vien" << left << setw(25) << "Ho va ten" << left << setw(15) << "Lop" << left << setw(12) << "Ngay het han the" << endl;
+	cout << "\n\n";
+	//cout << left << setw(15) << "Ma sinh vien" << left << setw(25) << "Ho va ten" << left << setw(15) << "Lop" << left << setw(12) << "Ngay het han the" << endl;
+	cout << left << setw(2) << "|" << left << setw(15) << "Ma sinh vien" << left << setw(2) << "|" << left << setw(25) << "Ho va ten" << left << setw(2) << "|" << left << setw(15) << "Lop" << left << setw(2) << "|" << left << setw(20) << "Ngay het han the" << left << setw(2) << "|" << endl;
 	for (int i = 0; i < n; i++)
 	{
 		sv[i].xuatSV();
@@ -73,11 +75,12 @@ void checkCard_ds(SV sv[], int n)
 	cout << "\nNhap ngay kiem tra the: ";
 	cin >> a >> b >> c;
 	x.setNgay(a); x.setThang(b); x.setNam(c);
-	cout << left << setw(15) << "Ma sinh vien" << left << setw(25) << "Ho va ten" << left << setw(15) << "Lop" << left << setw(20) << "Ngay het han the" << left << setw(20) << "Tinh trang the" << endl;
+	//cout << left << setw(15) << "Ma sinh vien" << left << setw(25) << "Ho va ten" << left << setw(15) << "Lop" << left << setw(20) << "Ngay het han the" << left << setw(20) << "Tinh trang the" << endl;
+	cout << left << setw(2) << "|" << left << setw(15) << "Ma sinh vien" << left << setw(2) << "|" << left << setw(25) << "Ho va ten" << left << setw(2) << "|" << left << setw(15) << "Lop" << left << setw(2) << "|" << left << setw(20) << "Ngay het han the" << left << setw(2) << "|" << left << setw(20) << "Tinh trang the" << setw(1) << "|" << endl;
 	for (int i = 0; i < n-1; i++)
 	{
 		sv[i].xuatSV();
-		cout << sv[i].checkCard(x);
+		cout << left << setw(20) << sv[i].checkCard(x) << setw(1) << "|";
 		cout << "\n";
 	}
 }
@@ -87,7 +90,7 @@ void timKiem_ds(SV sv[], int n)
 	string x;
 	cout << "\nNhap ma sinh vien can tim: ";
 	cin >> x;
-	cout << left << setw(15) << "Ma sinh vien" << left << setw(25) << "Ho va ten" << left << setw(15) << "Lop" << left << setw(12) << "Ngay het han the" << endl;
+	cout << left << setw(2) << "|" << left << setw(15) << "Ma sinh vien" << left << setw(2) << "|" << left << setw(25) << "Ho va ten" << left << setw(2) << "|" << left << setw(15) << "Lop" << left << setw(2) << "|" << left << setw(12) << "Ngay het han the" << left << setw(2) << "|" << endl;
 	for (int i = 0; i < n; i++)
 	{
 		if (sv[i].timKiemSV(x) == true)
@@ -99,11 +102,11 @@ void timKiem_ds(SV sv[], int n)
 
 void updateSV(SV sv[], int n)
 {
-	int k = n-1;
+	//int k = n-1;
 	fstream f1, f2;
 	f1.open("SinhVien.txt", ios::in);
 	f2.open("SinhVien_new.txt", ios::app);
-	for (int i = 0; i < k; i++)
+	for (int i = 0; i < n; i++)
 	{
 		sv[i].ghi_file(f2);
 	}
@@ -114,7 +117,7 @@ void updateSV(SV sv[], int n)
 	rename("SinhVien_new.txt", "SinhVien.txt");
 }
 
-void xoaSV_ID(SV sv[], int n)
+void xoaSV_ID(SV sv[], int &n)
 {
 	string found;
 	cout << "\nNhap vao ma sinh vien cua sinh vien can xoa: ";
@@ -140,8 +143,8 @@ void xoaSV_ID(SV sv[], int n)
 	}
 	else
 	{
-		//n--;
-		updateSV(sv, n);
+		n--;
+		//updateSV(sv, n);
 	}
 }
 
@@ -187,7 +190,8 @@ void doc_file_s(Sach s[], int& p)
 
 void xuatDS_S(Sach s[], int p)
 {
-	cout << left << setw(10) << "Ma sach" << left << setw(20) << "Ten sach" << left << setw(15) << "The loai" << left << setw(20) << "Ten tac gia" << left << setw(17) << "Nam xuat ban" << left << setw(8) << "So luong" << endl;
+	cout << "\n\n";
+	cout << left << setw(2) << "|" << left << setw(10) << "Ma sach" << left << setw(2) << "|" << left << setw(20) << "Ten sach" << left << setw(2) << "|" << left << setw(15) << "The loai" << left << setw(2) << "|" << left << setw(20) << "Ten tac gia" << left << setw(2) << "|" << left << setw(17) << "Nam xuat ban" << left << setw(2) << "|" << left << setw(8) << "So luong" << left << setw(2) << "|" << endl;
 	for (int i = 0; i < p; i++)
 	{
 		s[i].xuatS();
@@ -203,6 +207,32 @@ void tongDSS(Sach s[], int p)
 		t = t + s[i].getSL();
 	}
 	cout << "\nTong sach hien co trong thu vien: " << t;
+}
+
+void sach_ConLai(Sach s[], int p)
+{
+	//int k[100];
+	MuonTra tmp[100];
+	for (int i = 0; i < p; i++)
+	{
+		/*k[i] = s[i].getSL() - tmp[i].*/
+	}
+}
+
+void traCuu_sach(Sach s[], int p)
+{
+	string x;
+	cout << "\nNhap ma sach can tim: ";
+	cin.ignore();
+	getline(cin, x);
+	for (int i = 0; i < p; i++)
+	{
+		if (s[i].timS(x) == true)
+		{
+			cout << left << setw(2) << "|" << left << setw(10) << "Ma sach" << left << setw(2) << "|" << left << setw(20) << "Ten sach" << left << setw(2) << "|" << left << setw(15) << "The loai" << left << setw(2) << "|" << left << setw(20) << "Ten tac gia" << left << setw(2) << "|" << left << setw(17) << "Nam xuat ban" << left << setw(2) << "|" << left << setw(8) << "So luong" << left << setw(2) << "|" << endl;
+			s[i].xuatS();
+		}
+	}
 }
 
 //Muon tra
@@ -247,7 +277,8 @@ void doc_file_MT(MuonTra mt[], int& m)
 
 void xuatDSMT(MuonTra mt[], int m)
 {
-	cout << left << setw(15) << "Ma sinh vien" << left << setw(25) << "Ho va ten" << left << setw(15) << "Lop" << left << setw(10) << "Ma sach" << left << setw(15) << "Ten sach" << left << setw(15) << "The loai" << left << setw(20) << "Ngay muon" << left << setw(20) << "Ngay hen tra" << left << setw(20) << "Ngay tra" << left << setw(8) << "So Luong" << endl;
+	cout << "\n\n";
+	cout << left << setw(2) << "|" << left << setw(15) << "Ma sinh vien" << left << setw(2) << "|" << left << setw(25) << "Ho va ten" << left << setw(2) << "|" << left << setw(15) << "Lop" << left << setw(2) << "|" << left << setw(10) << "Ma sach" << left << setw(2) << "|" << left << setw(15) << "Ten sach" << left << setw(2) << "|" << left << setw(15) << "The loai" << left << setw(2) << "|" << left << setw(14) << "Ngay muon" << left << setw(2) << "|" << left << setw(14) << "Ngay hen tra" << left << setw(2) << "|" << left << setw(14) << "Ngay tra" << left << setw(2) << "|" << left << setw(8) << "So Luong" << left << setw(2) << "|" << endl;
 	for (int i = 0; i < m; i++)
 	{
 		mt[i].xuat();
@@ -269,14 +300,81 @@ void tongSachM_ten(MuonTra mt[], int m)
 {
 	int s = 0;
 	string x;
-	cout << "\nTen sach hoac the loai can tra: ";
+	cout << "\nTen sach hoac the loai can tra cuu: ";
 	cin.ignore();
 	getline(cin, x);
 	for (int i = 0; i < m; i++)
 	{
-		s = s + mt[i].tinhSL_ten(x);
+		if ((x == mt[i].getTenS() && mt[i].getNgayT().getNgay() == 0) || (x == mt[i].getTheLoai() && mt[i].getNgayT().getNgay() == 0))
+		{
+			s = s + mt[i].getSL();
+		}
 	}
 	cout << "\nTong so luong sach dang tim da muon: " << s;
+}
+
+void kiemTraHanMT(MuonTra mt[], int m)
+{
+	date x;
+	int a = 0, b = 0, c = 0;
+	cout << "\nNhap ngay kiem tra han tra sach: ";
+	cin >> a >> b >> c;
+	x.setNgay(a); x.setThang(b); x.setNam(c);
+	cout << "\n\n";
+	cout << left << setw(2) << "|" << left << setw(13) << "Ma sinh vien" << left << setw(2) << "|" << left << setw(22) << "Ho va ten" << left << setw(2) << "|" << left << setw(12) << "Lop" << left << setw(2) << "|" << left << setw(10) << "Ma sach" << left << setw(2) << "|" << left << setw(15) << "Ten sach" << left << setw(2) << "|" << left << setw(15) << "The loai" << left << setw(2) << "|" << left << setw(14) << "Ngay muon" << left << setw(2) << "|" << left << setw(14) << "Ngay hen tra" << left << setw(2) << "|" << left << setw(12) << "Ngay tra" << left << setw(2) << "|" << left << setw(8) << "So Luong" << left << setw(2) << "|" << left << setw(12) << "Trang thai" << setw(1) << "|" << endl;
+	for (int i = 0; i < m; i++)
+	{
+		mt[i].xuat();
+		cout << left << setw(12) << mt[i].kiemTraMT(x) << setw(1) << "|";
+		cout << "\n";
+	}
+}
+
+void tongSachMuon_1SV(MuonTra mt[], int m)
+{
+	int s = 0;
+	int tmp1 = 0, tmp2;
+	string x;
+	cout << "\nNhap ma so sinh vien cua sinh vien can tra cuu: ";
+	cin.ignore();
+	getline(cin, x);
+	for (int i = 0; i < m; i++)
+	{
+		if (x == mt[i].getMssv() && mt[i].getNgayT().getNgay() == 0)
+		{
+			s = s + mt[i].getSL();
+			tmp1++;
+		}
+	}
+	if (tmp1 == 0)
+	{
+		cout << "\nKhong co sinh vien nay!";
+	}
+	else
+	{
+		cout << "\nTong so luong sach sinh vien nay da muon la: " << s;
+	}
+	if (s != 0)
+	{
+		cout << "\nChi tiet? (Bam 1) ";
+		cin >> tmp2;
+		if (tmp2 != 1)
+		{
+			return;
+		}
+		else
+		{
+			cout << left << setw(2) << "|" << left << setw(13) << "Ma sinh vien" << left << setw(2) << "|" << left << setw(22) << "Ho va ten" << left << setw(2) << "|" << left << setw(12) << "Lop" << left << setw(2) << "|" << left << setw(10) << "Ma sach" << left << setw(2) << "|" << left << setw(15) << "Ten sach" << left << setw(2) << "|" << left << setw(15) << "The loai" << left << setw(2) << "|" << left << setw(14) << "Ngay muon" << left << setw(2) << "|" << left << setw(14) << "Ngay hen tra" << left << setw(2) << "|" << left << setw(12) << "Ngay tra" << left << setw(2) << "|" << left << setw(8) << "So Luong" << left << setw(2) << "|" << endl;
+			for (int i = 0; i < m; i++)
+			{
+				if (x == mt[i].getMssv() && mt[i].getNgayT().getNgay() == 0)
+				{
+					mt[i].xuat();
+					cout << "\n";
+				}
+			}
+		}
+	}
 }
 
 //Xu ly
@@ -299,11 +397,9 @@ begin:
 	cout << "\n\t\t\t\t\t    ||                  2. Xuat thong tin sinh vien                       ||";
 	cout << "\n\t\t\t\t\t    ||                  3. Kiem tra tinh trang the                        ||";
 	cout << "\n\t\t\t\t\t    ||                  4. Tim kiem sinh vien                             ||";
-	cout << "\n\t\t\t\t\t    ||                  5. Xoa sinh vien theo MSSV                        ||";
-	cout << "\n\t\t\t\t\t    ||                  6.                                                ||";
-	cout << "\n\t\t\t\t\t    ||                  7.                                                ||";
-	cout << "\n\t\t\t\t\t    ||                  8.                                                ||";
-	cout << "\n\t\t\t\t\t    ||                  9. Tro ve                                         ||";
+	cout << "\n\t\t\t\t\t    ||                  *5. Xoa sinh vien theo MSSV                        ||";
+	cout << "\n\t\t\t\t\t    ||                  *6. Cap nhap thong tin sinh vien                   ||";
+	cout << "\n\t\t\t\t\t    ||                  7. Tro ve                                         ||";
 	cout << "\n\t\t\t\t\t    ========================================================================";
 	cout << "\n\t\t\t\t\t    ||                              Nhom 23                               ||";
 	cout << "\n\t\t\t\t\t    ========================================================================";
@@ -320,7 +416,7 @@ begin:
 			cin >> chon;
 		k = false;
 	} while ((chon < '1') || (chon > '9'));
-	//doc_file_SV(sv, n);
+	doc_file_SV(sv, n);
 	switch (chon) {
 	case '1':
 		themSV(sv, n);
@@ -343,22 +439,22 @@ begin:
 		pressAnyKey();
 		break;
 	case '2':
-		doc_file_SV(sv, n);
+		//doc_file_SV(sv, n);
 		xuatDSSV(sv, n);
 		pressAnyKey();
 		break;
 	case '3':
-		doc_file_SV(sv, n);
+		//doc_file_SV(sv, n);
 		checkCard_ds(sv, n);
 		pressAnyKey();
 		break;
 	case '4':
-		doc_file_SV(sv, n);
+		//doc_file_SV(sv, n);
 		timKiem_ds(sv, n);
 		pressAnyKey();
 		break;
 	case '5':
-		doc_file_SV(sv, n);
+		//doc_file_SV(sv, n);
 		xoaSV_ID(sv, n);
 		//luuSVdaThem(sv, f, n);
 		pressAnyKey();
@@ -367,12 +463,6 @@ begin:
 		pressAnyKey();
 		break;
 	case '7':
-		pressAnyKey();
-		break;
-	case '8':
-		pressAnyKey();
-		break;
-	case '9':
 		goto end;
 		break;
 	}
@@ -392,12 +482,10 @@ begin:
 	cout << "\n\t\t\t\t\t    ||                 1. Them sach                                       ||";
 	cout << "\n\t\t\t\t\t    ||                 2. Xuat danh sach sach hien co                     ||";
 	cout << "\n\t\t\t\t\t    ||                 3. Tong so luong sach hien co                      ||";
-	cout << "\n\t\t\t\t\t    ||                 4.                                                 ||";
-	cout << "\n\t\t\t\t\t    ||                 5.                                                 ||";
-	cout << "\n\t\t\t\t\t    ||                 6.                                                 ||";
-	cout << "\n\t\t\t\t\t    ||                 7.                                                 ||";
-	cout << "\n\t\t\t\t\t    ||                 8.                                                 ||";
-	cout << "\n\t\t\t\t\t    ||                 9. Tro ve                                          ||";
+	cout << "\n\t\t\t\t\t    ||                 *4. Cap nhap thong tin sach                         ||";
+	cout << "\n\t\t\t\t\t    ||                 *5. Kiem tra so luong sach con lai                  ||";
+	cout << "\n\t\t\t\t\t    ||                 6. Tra cuu thong tin 1 sach bat ky                 ||";
+	cout << "\n\t\t\t\t\t    ||                 7. Tro ve                                          ||";
 	cout << "\n\t\t\t\t\t    ========================================================================";
 	cout << "\n\t\t\t\t\t    ||                              Nhom 23                               ||";
 	cout << "\n\t\t\t\t\t    ========================================================================";
@@ -451,15 +539,11 @@ begin:
 		pressAnyKey();
 		break;
 	case '6':
+		doc_file_s(s, p);
+		traCuu_sach(s, p);
 		pressAnyKey();
 		break;
 	case '7':
-		pressAnyKey();
-		break;
-	case '8':
-		pressAnyKey();
-		break;
-	case '9':
 		goto end;
 		break;
 	}
@@ -477,15 +561,14 @@ begin:
 	cout << "\n\t\t\t\t\t    ========================================================================";
 	cout << "\n\t\t\t\t\t    ||                          QUAN LY MUON TRA                          ||";
 	cout << "\n\t\t\t\t\t    ========================================================================";
-	cout << "\n\t\t\t\t\t    ||                     1. Them nguoi muon                             ||";
-	cout << "\n\t\t\t\t\t    ||                     2. Xuat nguoi muon                             ||";
-	cout << "\n\t\t\t\t\t    ||                     3. Tong sach dang muon                         ||";
-	cout << "\n\t\t\t\t\t    ||                     4. Tong loai sach cu the dang muon             ||";
-	cout << "\n\t\t\t\t\t    ||                     5.                                             ||";
-	cout << "\n\t\t\t\t\t    ||                     6.                                             ||";
-	cout << "\n\t\t\t\t\t    ||                     7.                                             ||";
-	cout << "\n\t\t\t\t\t    ||                     8.                                             ||";
-	cout << "\n\t\t\t\t\t    ||                     9. Tro ve                                      ||";
+	cout << "\n\t\t\t\t\t    ||                   1. Them nguoi muon                               ||";
+	cout << "\n\t\t\t\t\t    ||                   2. Xuat nguoi muon                               ||";
+	cout << "\n\t\t\t\t\t    ||                   3. Tong sach dang muon                           ||";
+	cout << "\n\t\t\t\t\t    ||                   4. Tong loai sach cu the dang muon               ||";
+	cout << "\n\t\t\t\t\t    ||                   5. Kiem tra sach qua han                         ||";
+	cout << "\n\t\t\t\t\t    ||                   6. Tong sach dang muon cua 1 sinh vien           ||";
+	cout << "\n\t\t\t\t\t    ||                   *7. Cap nhap thong tin muon tra                   ||";
+	cout << "\n\t\t\t\t\t    ||                   8. Tro ve                                        ||";
 	cout << "\n\t\t\t\t\t    ========================================================================";
 	cout << "\n\t\t\t\t\t    ||                              Nhom 23                               ||";
 	cout << "\n\t\t\t\t\t    ========================================================================";
@@ -539,18 +622,19 @@ begin:
 		pressAnyKey();
 		break;
 	case '5':
+		doc_file_MT(mt, m);
+		kiemTraHanMT(mt, m);
 		pressAnyKey();
 		break;
 	case '6':
+		doc_file_MT(mt, m);
+		tongSachMuon_1SV(mt, m);
 		pressAnyKey();
 		break;
 	case '7':
 		pressAnyKey();
 		break;
 	case '8':
-		pressAnyKey();
-		break;
-	case '9':
 		goto end;
 		break;
 	}

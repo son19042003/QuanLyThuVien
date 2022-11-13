@@ -29,5 +29,6 @@ public:
 	bool timS(string x);
 	void docFileS(fstream& f);
 	void ghiFileS(fstream& f);
-	int tongS();
+	//int tongS();
+	int tongS_Conlai();
 };

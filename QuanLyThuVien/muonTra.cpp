@@ -49,6 +49,16 @@ date MuonTra::getNgayT()
 	return ngayT;
 }
 
+void MuonTra::setSL(int sl)
+{
+	this->sl = sl;
+}
+
+int MuonTra::getSL()
+{
+	return sl;
+}
+
 
 void MuonTra::them()
 {
@@ -84,7 +94,7 @@ void MuonTra::xoa()
 
 void MuonTra::xuat()
 {
-	cout << left << setw(15) << mssv << left << setw(25) << hoTen << left << setw(15) << lop << left << setw(10) << maS << left << setw(15) << tenS << left << setw(15) << theLoai << right << setw(2) << ngayM.getNgay() << "/" << right << setw(2) << ngayM.getThang() << "/" << left << setw(14) << ngayM.getNam() << right << setw(2) << ngayHT.getNgay() << "/" << right << setw(2) << ngayHT.getThang() << "/" << left << setw(14) << ngayHT.getNam() << right << setw(2) << ngayT.getNgay() << "/" << right << setw(2) << ngayT.getThang() << "/" << left << setw(14) << ngayT.getNam() << left << setw(8) << sl;
+	cout << left << setw(2) << "|" << left << setw(13) << mssv << left << setw(2) << "|" << left << setw(22) << hoTen << left << setw(2) << "|" << left << setw(12) << lop << left << setw(2) << "|" << left << setw(10) << maS << left << setw(2) << "|" << left << setw(15) << tenS << left << setw(2) << "|" << left << setw(15) << theLoai << left << setw(2) << "|" << right << setw(2) << ngayM.getNgay() << "/" << right << setw(2) << ngayM.getThang() << "/" << left << setw(8) << ngayM.getNam() << left << setw(2) << "|" << right << setw(2) << ngayHT.getNgay() << "/" << right << setw(2) << ngayHT.getThang() << "/" << left << setw(8) << ngayHT.getNam() << left << setw(2) << "|" << right << setw(2) << ngayT.getNgay() << "/" << right << setw(2) << ngayT.getThang() << "/" << left << setw(6) << ngayT.getNam() << left << setw(2) << "|" << left << setw(8) << sl << left << setw(2) << "|";
 }
 
 void MuonTra::docfileMT(fstream& f)
@@ -158,16 +168,42 @@ int MuonTra::tinhSL()
 	}
 }
 
-int MuonTra::tinhSL_ten(string x)
-{
-	if ( x == theLoai && ngayT.getNgay()==0)
-	{
-		return sl;
-	}
-}
-
 //void MuonTra::sua(string x)
 //{
 //	cout << "\nNgay tra: ";
 //	cin >> ngayT.ngay >> ngayT.thang >> ngayT.nam;
 //}
+
+string MuonTra::kiemTraMT(date x)
+{
+	if (x.getNam() == ngayHT.getNam() && ngayT.getNam() == 0)
+	{
+		if (ngayHT.getThang() == x.getThang() && ngayT.getThang() == 0)
+		{
+			if (ngayHT.getNgay() < x.getNgay() && ngayT.getNgay() == 0)
+			{
+				return "Qua han";
+			}
+			else
+			{
+				return "Con han";
+			}
+		}
+		else if (ngayHT.getThang() < x.getThang() && ngayT.getThang() == 0)
+		{
+			return "Qua han";
+		}
+		else
+		{
+			return "Con han";
+		}
+	}
+	else if (ngayHT.getNam() < x.getNam() && ngayT.getNam() == 0)
+	{
+		return "Qua han";
+	}
+	else
+	{
+		return "Con han";
+	}
+}

@@ -2,3 +2,4 @@
 12346, Pham Tu Thanh, CNTT K62, 122, Python, Tin hoc, 1/11/2022, 10/11/2022, 0/0/0, 2
 12347, Nguyen Van A, CNTT K63, 113, C co ban, Tin hoc, 2/11/2022, 30/11/2022, 0/0/0, 2
 12351, Doraemon, QTKD K59, 333, Naruto, Truyen tranh, 17/11/2022, 30/11/2022, 0/0/0, 2
+12345, Pham Thanh Son, CNTT K62, 333, Naruto, Truyen tranh, 10/11/2022, 20/11/2022, 0/0/0, 2

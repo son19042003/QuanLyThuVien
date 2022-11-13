@@ -88,7 +88,7 @@ void Sach::xoaS()
 
 void Sach::xuatS()
 {
-	cout << left << setw(2) << "|" << left << setw(10) << maS << left << setw(2) << "|" << left << setw(20) << tenS << left << setw(2) << "|" << left << setw(15) << theLoai << left << setw(2) << "|" << left << setw(20) << tacGia << left << setw(2) << "|" << left << setw(17) << namXB << left << setw(2) << "|" << left << setw(8) << soLuong << left << setw(2) << "|";
+	cout << left << setw(2) << "|" << left << setw(10) << maS << left << setw(2) << "|" << left << setw(20) << tenS << left << setw(2) << "|" << left << setw(15) << theLoai << left << setw(2) << "|" << left << setw(20) << tacGia << left << setw(2) << "|" << left << setw(17) << namXB << left << setw(2) << "|" << left << setw(10) << soLuong << left << setw(2) << "|";
 }
 
 bool Sach::timS(string x)

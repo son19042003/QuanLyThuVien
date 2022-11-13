@@ -191,7 +191,7 @@ void doc_file_s(Sach s[], int& p)
 void xuatDS_S(Sach s[], int p)
 {
 	cout << "\n\n";
-	cout << left << setw(2) << "|" << left << setw(10) << "Ma sach" << left << setw(2) << "|" << left << setw(20) << "Ten sach" << left << setw(2) << "|" << left << setw(15) << "The loai" << left << setw(2) << "|" << left << setw(20) << "Ten tac gia" << left << setw(2) << "|" << left << setw(17) << "Nam xuat ban" << left << setw(2) << "|" << left << setw(8) << "So luong" << left << setw(2) << "|" << endl;
+	cout << left << setw(2) << "|" << left << setw(10) << "Ma sach" << left << setw(2) << "|" << left << setw(20) << "Ten sach" << left << setw(2) << "|" << left << setw(15) << "The loai" << left << setw(2) << "|" << left << setw(20) << "Ten tac gia" << left << setw(2) << "|" << left << setw(17) << "Nam xuat ban" << left << setw(2) << "|" << left << setw(10) << "So luong" << left << setw(2) << "|" << endl;
 	for (int i = 0; i < p; i++)
 	{
 		s[i].xuatS();
@@ -209,17 +209,7 @@ void tongDSS(Sach s[], int p)
 	cout << "\nTong sach hien co trong thu vien: " << t;
 }
 
-void sach_ConLai(Sach s[], int p)
-{
-	//int k[100];
-	MuonTra tmp[100];
-	for (int i = 0; i < p; i++)
-	{
-		/*k[i] = s[i].getSL() - tmp[i].*/
-	}
-}
-
-void traCuu_sach(Sach s[], int p)
+void traCuu_sach(Sach s[], int p, MuonTra mt[], int m)
 {
 	string x;
 	cout << "\nNhap ma sach can tim: ";
@@ -227,9 +217,21 @@ void traCuu_sach(Sach s[], int p)
 	getline(cin, x);
 	for (int i = 0; i < p; i++)
 	{
-		if (s[i].timS(x) == true)
+		/*if (s[i].timS(x) == true)
 		{
 			cout << left << setw(2) << "|" << left << setw(10) << "Ma sach" << left << setw(2) << "|" << left << setw(20) << "Ten sach" << left << setw(2) << "|" << left << setw(15) << "The loai" << left << setw(2) << "|" << left << setw(20) << "Ten tac gia" << left << setw(2) << "|" << left << setw(17) << "Nam xuat ban" << left << setw(2) << "|" << left << setw(8) << "So luong" << left << setw(2) << "|" << endl;
+			s[i].xuatS();
+		}*/
+		if (s[i].timS(x) == true)
+		{
+			for (int j = 0; j < m; j++)
+			{
+				if (s[i].getMaS() == mt[j].getMaS())
+				{
+					s[i].setSL(s[i].getSL() - mt[j].getSL());
+				}
+			}
+			cout << left << setw(2) << "|" << left << setw(10) << "Ma sach" << left << setw(2) << "|" << left << setw(20) << "Ten sach" << left << setw(2) << "|" << left << setw(15) << "The loai" << left << setw(2) << "|" << left << setw(20) << "Ten tac gia" << left << setw(2) << "|" << left << setw(17) << "Nam xuat ban" << left << setw(2) << "|" << left << setw(8) << "SL con lai" << left << setw(2) << "|" << endl;
 			s[i].xuatS();
 		}
 	}
@@ -473,6 +475,8 @@ end:;
 void QLSach() {
 	Sach s[100];
 	int p;
+	MuonTra mt[100];
+	int m;
 	fstream f;
 begin:
 	cout << endl << endl;
@@ -483,9 +487,8 @@ begin:
 	cout << "\n\t\t\t\t\t    ||                 2. Xuat danh sach sach hien co                     ||";
 	cout << "\n\t\t\t\t\t    ||                 3. Tong so luong sach hien co                      ||";
 	cout << "\n\t\t\t\t\t    ||                 *4. Cap nhap thong tin sach                         ||";
-	cout << "\n\t\t\t\t\t    ||                 *5. Kiem tra so luong sach con lai                  ||";
-	cout << "\n\t\t\t\t\t    ||                 6. Tra cuu thong tin 1 sach bat ky                 ||";
-	cout << "\n\t\t\t\t\t    ||                 7. Tro ve                                          ||";
+	cout << "\n\t\t\t\t\t    ||                 5. Tra cuu thong tin 1 sach bat ky                 ||";
+	cout << "\n\t\t\t\t\t    ||                 6. Tro ve                                          ||";
 	cout << "\n\t\t\t\t\t    ========================================================================";
 	cout << "\n\t\t\t\t\t    ||                              Nhom 23                               ||";
 	cout << "\n\t\t\t\t\t    ========================================================================";
@@ -536,14 +539,12 @@ begin:
 		pressAnyKey();
 		break;
 	case '5':
+		doc_file_MT(mt, m);
+		doc_file_s(s, p);
+		traCuu_sach(s, p, mt, m);
 		pressAnyKey();
 		break;
 	case '6':
-		doc_file_s(s, p);
-		traCuu_sach(s, p);
-		pressAnyKey();
-		break;
-	case '7':
 		goto end;
 		break;
 	}

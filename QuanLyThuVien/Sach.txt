@@ -1,3 +1,9 @@
-111, C++ Co ban, Tin hoc, Tac Gia, 2000, 15
-234, Tay Du Ky, Tieu thuyet, Ngo Thua An, 1976, 20
-113, python, Tin hoc, Son A, 1999, 17
+111, C Co ban, Tin hoc, Tac Gia, 2000, 100
+112, C++ Co ban, Tin hoc, Tac Gia, 2000, 100
+113, Python, Tin hoc, A, 1999, 50
+222, Naruto, Truyen tranh, AAA, 1976, 30
+223, Doraemon, Truyen tranh, BBB, 1999, 50
+224, Conan, Truyen tranh, CCC, 1998, 50
+333, Giai tich 1, Toan hoc, DDD, 2003, 100
+334, Giai tich 2, Toan hoc, EEE, 2005, 100
+335, Toan roi rac, Toan hoc, FFF, 2002, 100

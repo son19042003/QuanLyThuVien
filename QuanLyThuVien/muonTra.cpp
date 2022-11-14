@@ -166,21 +166,63 @@ int MuonTra::tinhSL()
 	{
 		return sl;
 	}
+	else
+	{
+		return 0;
+	}
 }
-
-//void MuonTra::sua(string x)
-//{
-//	cout << "\nNgay tra: ";
-//	cin >> ngayT.ngay >> ngayT.thang >> ngayT.nam;
-//}
 
 string MuonTra::kiemTraMT(date x)
 {
-	if (x.getNam() == ngayHT.getNam() && ngayT.getNam() == 0)
+	if (ngayT.getNgay() != 0)
 	{
-		if (ngayHT.getThang() == x.getThang() && ngayT.getThang() == 0)
+		if (ngayT.getNam() == ngayHT.getNam())
 		{
-			if (ngayHT.getNgay() < x.getNgay() && ngayT.getNgay() == 0)
+			if (ngayT.getThang() == ngayHT.getThang())
+			{
+				if (ngayT.getNgay() <= ngayHT.getNgay())
+				{
+					return "Da tra";
+				}
+				else
+				{
+					return "Tra muon";
+				}
+			}
+			else if (ngayT.getThang() < ngayHT.getThang())
+			{
+				return "Da tra";
+			}
+			else
+			{
+				return "Tra muon";
+			}
+		}
+		else if (ngayT.getNam() < ngayHT.getNam())
+		{
+			return "Da tra";
+		}
+		else
+		{
+			return "Tra muon";
+		}
+	}
+	else
+	{
+		if (x.getNam() == ngayHT.getNam())
+		{
+			if (ngayHT.getThang() == x.getThang())
+			{
+				if (ngayHT.getNgay() < x.getNgay())
+				{
+					return "Qua han";
+				}
+				else
+				{
+					return "Con han";
+				}
+			}
+			else if (ngayHT.getThang() < x.getThang())
 			{
 				return "Qua han";
 			}
@@ -189,7 +231,7 @@ string MuonTra::kiemTraMT(date x)
 				return "Con han";
 			}
 		}
-		else if (ngayHT.getThang() < x.getThang() && ngayT.getThang() == 0)
+		else if (ngayHT.getNam() < x.getNam())
 		{
 			return "Qua han";
 		}
@@ -198,12 +240,12 @@ string MuonTra::kiemTraMT(date x)
 			return "Con han";
 		}
 	}
-	else if (ngayHT.getNam() < x.getNam() && ngayT.getNam() == 0)
-	{
-		return "Qua han";
-	}
-	else
-	{
-		return "Con han";
-	}
+}
+
+date MuonTra::suaTT(int a, int b, int c)
+{
+	ngayT.setNgay(a);
+	ngayT.setThang(b);
+	ngayT.setNam(c);
+	return ngayT;
 }

@@ -164,3 +164,11 @@ void SV::ghi_file(fstream& filein)
 	filein << mssv << ", " << hoTen << ", " << lop << ", " << ngayHHT.getNgay() << "/" << ngayHHT.getThang() << "/" << ngayHHT.getNam() << endl;
 	filein.close();
 }
+
+date SV::capNhap(int a, int b, int c)
+{
+	ngayHHT.setNgay(a);
+	ngayHHT.setThang(b);
+	ngayHHT.setNam(c);
+	return ngayHHT;
+}

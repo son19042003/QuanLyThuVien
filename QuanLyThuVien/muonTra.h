@@ -25,10 +25,10 @@ public:
 	void them();
 	void xoa();
 	void xuat();
-	//void sua(string x);
 	void docfileMT(fstream& f);
 	void ghifileMT(fstream& f);
 	int tinhSL();
 	~MuonTra();
 	string kiemTraMT(date x);
+	date suaTT(int a, int b, int c);
 };

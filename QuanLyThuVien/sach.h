@@ -30,5 +30,4 @@ public:
 	void docFileS(fstream& f);
 	void ghiFileS(fstream& f);
 	//int tongS();
-	int tongS_Conlai();
 };

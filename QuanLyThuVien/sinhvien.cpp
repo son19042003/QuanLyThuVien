@@ -6,9 +6,9 @@ SV::SV()
 	this->mssv = ' ';
 	this->hoTen = ' ';
 	this->lop = ' ';
-	this->ngayHHT.setNgay(0);
-	this->ngayHHT.setThang(0);
-	this->ngayHHT.setNam(0);
+	this->ngayHHT.ngay = 0;
+	this->ngayHHT.thang = 0;
+	this->ngayHHT.nam = 0;
 }
 
 
@@ -61,11 +61,11 @@ string SV::getLop()
 
 string SV::checkCard(date x)
 {
-	if (ngayHHT.getNam() == x.getNam())
+	if (ngayHHT.nam == x.nam)
 	{
-		if (ngayHHT.getThang() == x.getThang())
+		if (ngayHHT.thang == x.thang)
 		{
-			if (ngayHHT.getNgay() < x.getNgay())
+			if (ngayHHT.ngay < x.ngay)
 			{
 				return "Da Khoa";
 			}
@@ -74,7 +74,7 @@ string SV::checkCard(date x)
 				return "Dang hoat dong";
 			}
 		}
-		else if (ngayHHT.getThang() < x.getThang())
+		else if (ngayHHT.thang < x.thang)
 		{
 			return "Da Khoa";
 		}
@@ -83,7 +83,7 @@ string SV::checkCard(date x)
 			return "Dang hoat dong";
 		}
 	}
-	else if (ngayHHT.getNam() < x.getNam())
+	else if (ngayHHT.nam < x.nam)
 	{
 		return "Da khoa";
 	}
@@ -99,27 +99,17 @@ void SV::themSV()
 	cin.ignore();
 	getline(cin, mssv);
 	cout << "\nNhap ho ten: ";
-	//cin.ignore();
 	getline(cin, hoTen);
 	cout << "\nLop: ";
-	//cin.ignore();
 	getline(cin, lop);
 	cout << "\nNhap ngay het han the: ";
-	int ngay;
-	cin >> ngay;
-	ngayHHT.setNgay(ngay);
-	int thang;
-	cin >> thang;
-	ngayHHT.setThang(thang);
-	int nam;
-	cin >> nam;
-	ngayHHT.setNam(nam);
+	nhapNgay(ngayHHT);
 }
 
 void SV::xuatSV()
 {
 	fflush(stdin);
-	cout << left << setw(2) << "|" << left << setw(15) << mssv << left << setw(2) << "|" << left << setw(25) << hoTen << left << setw(2) << "|" << left << setw(15) << lop << left << setw(2) << "|" << right << setw(2) << ngayHHT.getNgay() << "/" << right << setw(2) << ngayHHT.getThang() << "/" << left << setw(14) << ngayHHT.getNam() << left << setw(2) << "|";
+	cout << left << setw(2) << "|" << left << setw(15) << mssv << left << setw(2) << "|" << left << setw(25) << hoTen << left << setw(2) << "|" << left << setw(15) << lop << left << setw(2) << "|" << right << setw(2) << ngayHHT.ngay << "/" << right << setw(2) << ngayHHT.thang << "/" << left << setw(14) << ngayHHT.nam << left << setw(2) << "|";
 }
 
 bool SV::timKiemSV(string x)
@@ -142,17 +132,17 @@ void SV::doc_file(fstream& filein)
 	filein.seekg(1, 1);
 	getline(filein, lop, ',');
 	filein.seekg(1, 1);
-	int ngay;
-	filein >> ngay;
-	ngayHHT.setNgay(ngay);
+	//int ngay;
+	filein >> ngayHHT.ngay;
+	//ngayHHT.setNgay(ngay);
 	filein.seekg(1, 1);
-	int thang;
-	filein >> thang;
-	ngayHHT.setThang(thang);
+	//int thang;
+	filein >> ngayHHT.thang;
+	//ngayHHT.setThang(thang);
 	filein.seekg(1, 1);
-	int nam;
-	filein >> nam;
-	ngayHHT.setNam(nam);
+	//int nam;
+	filein >> ngayHHT.nam;
+	//ngayHHT.setNam(nam);
 
 	string temp;
 	getline(filein, temp);
@@ -161,14 +151,23 @@ void SV::doc_file(fstream& filein)
 void SV::ghi_file(fstream& filein)
 {
 	filein.open("SinhVien.txt", ios::app);
-	filein << mssv << ", " << hoTen << ", " << lop << ", " << ngayHHT.getNgay() << "/" << ngayHHT.getThang() << "/" << ngayHHT.getNam() << endl;
+	filein << mssv << ", " << hoTen << ", " << lop << ", " << ngayHHT.ngay << "/" << ngayHHT.thang << "/" << ngayHHT.nam << endl;
 	filein.close();
 }
 
-date SV::capNhap(int a, int b, int c)
+date SV::capNhap()
 {
-	ngayHHT.setNgay(a);
-	ngayHHT.setThang(b);
-	ngayHHT.setNam(c);
-	return ngayHHT;
+	date x;
+nhap:
+	nhapNgay(x);
+	if (soSanhNgay(ngayHHT, x) == true)
+	{
+		ngayHHT = x;
+		return ngayHHT;
+	}
+	else
+	{
+		cout << "\nNgay het han moi phai lon hon ngay het han cu";
+		goto nhap;
+	}
 }

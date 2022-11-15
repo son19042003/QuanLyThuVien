@@ -3,15 +3,15 @@
 
 MuonTra::MuonTra()
 {
-	this->ngayM.setNgay(0);
-	this->ngayM.setThang(0);
-	this->ngayM.setNam(0);
-	this->ngayHT.setNgay(0);
-	this->ngayHT.setThang(0);
-	this->ngayHT.setNam(0);
-	this->ngayT.setNgay(0);
-	this->ngayT.setThang(0);
-	this->ngayT.setNam(0);
+	this->ngayM.ngay = 0;
+	this->ngayM.thang = 0;
+	this->ngayM.nam = 0;
+	this->ngayHT.ngay = 0;
+	this->ngayHT.thang = 0;
+	this->ngayHT.nam = 0;
+	this->ngayT.ngay = 0;
+	this->ngayT.thang = 0;
+	this->ngayT.nam = 0;
 }
 
 MuonTra::~MuonTra()
@@ -60,41 +60,38 @@ int MuonTra::getSL()
 }
 
 
-void MuonTra::them()
-{
-	cout << "\nMa sinh vien: ";
-	cin.ignore();
-	getline(cin, mssv);
-	cout << "\nHo ten nguoi muon: ";
-	getline(cin, hoTen);
-	cout << "\nLop: ";
-	getline(cin, lop);
-	cout << "\nMa sach muon: ";
-	getline(cin, maS);
-	cout << "\nTen sach muon: ";
-	getline(cin, tenS);
-	cout << "\nThe loai: ";
-	getline(cin, theLoai);
-	cout << "\nNgay muon: ";
-	int nn, tm, nm;
-	cin >> nn >> tm >> nm;
-	ngayM.setNgay(nn); ngayM.setThang(tm); ngayM.setNam(nm);
-	cout << "\nNgay hen tra: ";
-	int nnht, tht, nht;
-	cin >> nnht >> tht >> nht;
-	ngayHT.setNgay(nnht); ngayHT.setThang(tht); ngayHT.setNam(nht);
-	cout << "\nSo luong muon: ";
-	cin >> sl;
-}
-
-void MuonTra::xoa()
-{
-
-}
+//void MuonTra::them()
+//{
+//	cout << "\nMa sinh vien: ";
+//	cin.ignore();
+//	getline(cin, mssv);
+//	cout << "\nHo ten nguoi muon: ";
+//	getline(cin, hoTen);
+//	cout << "\nLop: ";
+//	getline(cin, lop);
+//	cout << "\nMa sach muon: ";
+//	getline(cin, maS);
+//	cout << "\nTen sach muon: ";
+//	getline(cin, tenS);
+//	cout << "\nThe loai: ";
+//	getline(cin, theLoai);
+//	cout << "\nNgay muon: ";
+//	nhapNgay(ngayM);
+//	/*int nn, tm, nm;
+//	cin >> nn >> tm >> nm;
+//	ngayM.setNgay(nn); ngayM.setThang(tm); ngayM.setNam(nm);*/
+//	cout << "\nNgay hen tra: ";
+//	nhapNgay(ngayHT);
+//	/*int nnht, tht, nht;
+//	cin >> nnht >> tht >> nht;
+//	ngayHT.setNgay(nnht); ngayHT.setThang(tht); ngayHT.setNam(nht);*/
+//	cout << "\nSo luong muon: ";
+//	cin >> sl;
+//}
 
 void MuonTra::xuat()
 {
-	cout << left << setw(2) << "|" << left << setw(13) << mssv << left << setw(2) << "|" << left << setw(22) << hoTen << left << setw(2) << "|" << left << setw(12) << lop << left << setw(2) << "|" << left << setw(10) << maS << left << setw(2) << "|" << left << setw(15) << tenS << left << setw(2) << "|" << left << setw(15) << theLoai << left << setw(2) << "|" << right << setw(2) << ngayM.getNgay() << "/" << right << setw(2) << ngayM.getThang() << "/" << left << setw(8) << ngayM.getNam() << left << setw(2) << "|" << right << setw(2) << ngayHT.getNgay() << "/" << right << setw(2) << ngayHT.getThang() << "/" << left << setw(8) << ngayHT.getNam() << left << setw(2) << "|" << right << setw(2) << ngayT.getNgay() << "/" << right << setw(2) << ngayT.getThang() << "/" << left << setw(6) << ngayT.getNam() << left << setw(2) << "|" << left << setw(8) << sl << left << setw(2) << "|";
+	cout << left << setw(2) << "|" << left << setw(13) << mssv << left << setw(2) << "|" << left << setw(22) << hoTen << left << setw(2) << "|" << left << setw(12) << lop << left << setw(2) << "|" << left << setw(10) << maS << left << setw(2) << "|" << left << setw(15) << tenS << left << setw(2) << "|" << left << setw(15) << theLoai << left << setw(2) << "|" << right << setw(2) << ngayM.ngay << "/" << right << setw(2) << ngayM.thang << "/" << left << setw(8) << ngayM.nam << left << setw(2) << "|" << right << setw(2) << ngayHT.ngay << "/" << right << setw(2) << ngayHT.thang << "/" << left << setw(8) << ngayHT.nam << left << setw(2) << "|" << right << setw(2) << ngayT.ngay << "/" << right << setw(2) << ngayT.thang << "/" << left << setw(6) << ngayT.nam << left << setw(2) << "|" << left << setw(8) << sl << left << setw(2) << "|";
 }
 
 void MuonTra::docfileMT(fstream& f)
@@ -111,41 +108,41 @@ void MuonTra::docfileMT(fstream& f)
 	f.seekg(1, 1);
 	getline(f, theLoai, ',');
 	f.seekg(1, 1);
-	int nnm;
-	f >> nnm;
-	ngayM.setNgay(nnm);
+	//int nnm;
+	f >> ngayM.ngay;
+	//ngayM.setNgay(nnm);
 	f.seekg(1, 1);
-	int tm;
-	f >> tm;
-	ngayM.setThang(tm);
+	//int tm;
+	f >> ngayM.thang;
+	//ngayM.setThang(tm);
 	f.seekg(1, 1);
-	int nm;
-	f >> nm;
-	ngayM.setNam(nm);
+	//int nm;
+	f >> ngayM.nam;
+	//ngayM.setNam(nm);
 	f.seekg(2, 1);
-	int nnht;
-	f >> nnht;
-	ngayHT.setNgay(nnht);
+	//int nnht;
+	f >> ngayHT.ngay;
+	//ngayHT.setNgay(nnht);
 	f.seekg(1, 1);
-	int tht;
-	f >> tht;
-	ngayHT.setThang(tht);
+	//int tht;
+	f >> ngayHT.thang;
+	//ngayHT.setThang(tht);
 	f.seekg(1, 1);
-	int nht;
-	f >> nht;
-	ngayHT.setNam(nht);
+	//int nht;
+	f >> ngayHT.nam;
+	//ngayHT.setNam(nht);
 	f.seekg(2, 1);
-	int nnt;
-	f >> nnt;
-	ngayT.setNgay(nnt);
+	//int nnt;
+	f >> ngayT.ngay;
+	//ngayT.setNgay(nnt);
 	f.seekg(1, 1);
-	int tt;
-	f >> tt;
-	ngayT.setThang(tt);
+	//int tt;
+	f >> ngayT.thang;
+	//ngayT.setThang(tt);
 	f.seekg(1, 1);
-	int nt;
-	f >> nt;
-	ngayT.setNam(nt);
+	//int nt;
+	f >> ngayT.nam;
+	//ngayT.setNam(nt);
 	f.seekg(1, 1);
 	f >> sl;
 
@@ -156,13 +153,13 @@ void MuonTra::docfileMT(fstream& f)
 void MuonTra::ghifileMT(fstream& f)
 {
 	f.open("MuonTra.txt", ios::app);
-	f << mssv << ", " << hoTen << ", " << lop << ", " << maS << ", " << tenS << ", " << theLoai << ", " << ngayM.getNgay() << "/" << ngayM.getThang() << "/" << ngayM.getNam() << ", " << ngayHT.getNgay() << "/" << ngayHT.getThang() << "/" << ngayHT.getNam() << ", " << ngayT.getNgay() << "/" << ngayT.getThang() << "/" << ngayT.getNam() << ", " << sl << endl;
+	f << mssv << ", " << hoTen << ", " << lop << ", " << maS << ", " << tenS << ", " << theLoai << ", " << ngayM.ngay << "/" << ngayM.thang << "/" << ngayM.nam << ", " << ngayHT.ngay << "/" << ngayHT.thang << "/" << ngayHT.nam << ", " << ngayT.ngay << "/" << ngayT.thang << "/" << ngayT.nam << ", " << sl << endl;
 	f.close();
 }
 
 int MuonTra::tinhSL()
 {
-	if (ngayT.getNgay() == 0)
+	if (ngayT.ngay == 0)
 	{
 		return sl;
 	}
@@ -174,13 +171,13 @@ int MuonTra::tinhSL()
 
 string MuonTra::kiemTraMT(date x)
 {
-	if (ngayT.getNgay() != 0)
+	if (ngayT.ngay != 0)
 	{
-		if (ngayT.getNam() == ngayHT.getNam())
+		if (ngayT.nam == ngayHT.nam)
 		{
-			if (ngayT.getThang() == ngayHT.getThang())
+			if (ngayT.thang == ngayHT.thang)
 			{
-				if (ngayT.getNgay() <= ngayHT.getNgay())
+				if (ngayT.ngay <= ngayHT.ngay)
 				{
 					return "Da tra";
 				}
@@ -189,7 +186,7 @@ string MuonTra::kiemTraMT(date x)
 					return "Tra muon";
 				}
 			}
-			else if (ngayT.getThang() < ngayHT.getThang())
+			else if (ngayT.thang < ngayHT.thang)
 			{
 				return "Da tra";
 			}
@@ -198,7 +195,7 @@ string MuonTra::kiemTraMT(date x)
 				return "Tra muon";
 			}
 		}
-		else if (ngayT.getNam() < ngayHT.getNam())
+		else if (ngayT.nam < ngayHT.nam)
 		{
 			return "Da tra";
 		}
@@ -209,11 +206,11 @@ string MuonTra::kiemTraMT(date x)
 	}
 	else
 	{
-		if (x.getNam() == ngayHT.getNam())
+		if (x.nam == ngayHT.nam)
 		{
-			if (ngayHT.getThang() == x.getThang())
+			if (ngayHT.thang == x.thang)
 			{
-				if (ngayHT.getNgay() < x.getNgay())
+				if (ngayHT.ngay < x.ngay)
 				{
 					return "Qua han";
 				}
@@ -222,7 +219,7 @@ string MuonTra::kiemTraMT(date x)
 					return "Con han";
 				}
 			}
-			else if (ngayHT.getThang() < x.getThang())
+			else if (ngayHT.thang < x.thang)
 			{
 				return "Qua han";
 			}
@@ -231,7 +228,7 @@ string MuonTra::kiemTraMT(date x)
 				return "Con han";
 			}
 		}
-		else if (ngayHT.getNam() < x.getNam())
+		else if (ngayHT.nam < x.nam)
 		{
 			return "Qua han";
 		}
@@ -242,10 +239,8 @@ string MuonTra::kiemTraMT(date x)
 	}
 }
 
-date MuonTra::suaTT(int a, int b, int c)
+date MuonTra::suaTT()
 {
-	ngayT.setNgay(a);
-	ngayT.setThang(b);
-	ngayT.setNam(c);
+	nhapNgay(ngayT);
 	return ngayT;
 }

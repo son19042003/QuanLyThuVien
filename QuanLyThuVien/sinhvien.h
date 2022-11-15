@@ -26,6 +26,6 @@ public:
 	bool timKiemSV(string x);
 	void doc_file(fstream& filein);
 	void ghi_file(fstream& filein);
-	date capNhap(int a, int b, int c);
+	date capNhap();
 	~SV();
 };

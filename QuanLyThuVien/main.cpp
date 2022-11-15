@@ -13,10 +13,14 @@ Nhom 23 - CQ.62.CNTT:
 */
 
 //Sinh Vien
+
 void themSV(SV sv[], int& n)
 {
-	cout << "\nNhap so luong sinh vien muon them: ";
-	cin >> n;
+	do
+	{
+		cout << "\nNhap so luong sinh vien muon them (so luong >= 1): ";
+		cin >> n;
+	} while (n <= 0);
 	for (int i = 0; i < n; i++)
 	{
 		sv[i].themSV();
@@ -71,10 +75,11 @@ void xuatDSSV(SV sv[], int n)
 void checkCard_ds(SV sv[], int n)
 {
 	date x;
-	int a = 0, b = 0, c = 0;
+	//int a = 0, b = 0, c = 0;
 	cout << "\nNhap ngay kiem tra the: ";
-	cin >> a >> b >> c;
-	x.setNgay(a); x.setThang(b); x.setNam(c);
+	cin >> x.ngay >> x.thang >> x.nam;
+	/*cin >> a >> b >> c;
+	x.setNgay(a); x.setThang(b); x.setNam(c);*/
 	//cout << left << setw(15) << "Ma sinh vien" << left << setw(25) << "Ho va ten" << left << setw(15) << "Lop" << left << setw(20) << "Ngay het han the" << left << setw(20) << "Tinh trang the" << endl;
 	cout << left << setw(2) << "|" << left << setw(15) << "Ma sinh vien" << left << setw(2) << "|" << left << setw(25) << "Ho va ten" << left << setw(2) << "|" << left << setw(15) << "Lop" << left << setw(2) << "|" << left << setw(20) << "Ngay het han the" << left << setw(2) << "|" << left << setw(20) << "Tinh trang the" << setw(1) << "|" << endl;
 	for (int i = 0; i < n-1; i++)
@@ -107,7 +112,7 @@ void updateSV(SV sv[], int n)
 	f.open("SinhVien_new.txt", ios::app);
 	for (int i = 0; i < n; i++)
 	{
-		f << sv[i].getMssv() << ", " << sv[i].getHoten() << ", " << sv[i].getLop() << ", " << sv[i].getNgayHHT().getNgay() << "/" << sv[i].getNgayHHT().getThang() << "/" << sv[i].getNgayHHT().getNam() << endl;
+		f << sv[i].getMssv() << ", " << sv[i].getHoten() << ", " << sv[i].getLop() << ", " << sv[i].getNgayHHT().ngay << "/" << sv[i].getNgayHHT().thang << "/" << sv[i].getNgayHHT().nam << endl;
 	}
 	tmpf.close();
 	f.close();
@@ -159,8 +164,9 @@ void capNhap_SV(SV sv[], int n)
 		if (sv[i].getMssv() == x)
 		{
 			cout << "\nNhap ngay het han moi: ";
-			cin >> a >> b >> c;
-			sv[i].capNhap(a, b, c);
+			//cin >> a >> b >> c;
+			//nhapNgay(a, b, c);
+			sv[i].capNhap();
 			tmp++;
 		}
 	}
@@ -201,8 +207,11 @@ void sapXep_SV(SV sv[], int n)
 //Sach
 void them_S(Sach s[], int& p)
 {
-	cout << "So luong sach can them: ";
-	cin >> p;
+	do
+	{
+		cout << "So luong sach can them (so luong >= 1): ";
+		cin >> p;
+	} while (p <= 0);
 	for (int i = 0; i < p; i++)
 	{
 		s[i].themS();
@@ -364,13 +373,53 @@ void sapxep_S(Sach s[], int p)
 }
 
 //Muon tra
-void themNM(MuonTra mt[], int& m)
+void themNM(MuonTra mt[], int& m, SV sv[], int n, Sach s[], int p)
 {
-	cout << "\nNhap so luong nguoi muon muon them: ";
-	cin >> m;
+	string tmp1, tmp2;
+	date tmpM, tmpHT;
+	int t;
+	do
+	{
+		cout << "\nNhap so luong nguoi muon muon them: ";
+		cin >> m;
+	} while (m <= 0);
 	for (int i = 0; i < m; i++)
 	{
-		mt[i].them();
+		cout << "\nNhap ma sinh vien: ";
+		cin.ignore();
+		getline(cin, tmp1);
+		mt[i].setMssv(tmp1);
+		for (int j = 0; j < n; j++)
+		{
+			if (tmp1 == sv[j].getMssv())
+			{
+				mt[i].setHoten(sv[j].getHoten());
+				mt[i].setLop(sv[j].getLop());
+			}
+		}
+		cout << "\nNhap ma sach muon: ";
+		getline(cin, tmp2);
+		mt[i].setMaS(tmp2);
+		for (int j = 0; j < p; j++)
+		{
+			if (tmp2 == s[j].getMaS())
+			{
+				mt[i].setTenS(s[j].getTenS());
+				mt[i].setTheLoai(s[j].getTheLoai());
+				do
+				{
+					cout << "\nNhap so luong sach: ";
+					cin >> t;
+					mt[i].setSL(t);
+				} while (t <= 0 && t > s[j].getSL());
+			}
+		}
+		cout << "\nNhap ngay muon: ";
+		nhapNgay(tmpM);
+		mt[i].setNgayM(tmpM);
+		cout << "\nNhap ngay hen tra: ";
+		nhapNgay(tmpHT);
+		mt[i].setNgayHT(tmpHT);
 	}
 }
 
@@ -433,7 +482,7 @@ void tongSachM_ten(MuonTra mt[], int m)
 	getline(cin, x);
 	for (int i = 0; i < m; i++)
 	{
-		if ((x == mt[i].getTenS() && mt[i].getNgayT().getNgay() == 0) || (x == mt[i].getTheLoai() && mt[i].getNgayT().getNgay() == 0))
+		if ((x == mt[i].getTenS() && mt[i].getNgayT().ngay == 0) || (x == mt[i].getTheLoai() && mt[i].getNgayT().ngay == 0))
 		{
 			s = s + mt[i].getSL();
 		}
@@ -444,10 +493,11 @@ void tongSachM_ten(MuonTra mt[], int m)
 void kiemTraHanMT(MuonTra mt[], int m)
 {
 	date x;
-	int a = 0, b = 0, c = 0;
+	//int a = 0, b = 0, c = 0;
 	cout << "\nNhap ngay kiem tra han tra sach: ";
-	cin >> a >> b >> c;
-	x.setNgay(a); x.setThang(b); x.setNam(c);
+	nhapNgay(x);
+	/*cin >> a >> b >> c;
+	x.setNgay(a); x.setThang(b); x.setNam(c);*/
 	cout << "\n\n";
 	cout << left << setw(2) << "|" << left << setw(13) << "Ma sinh vien" << left << setw(2) << "|" << left << setw(22) << "Ho va ten" << left << setw(2) << "|" << left << setw(12) << "Lop" << left << setw(2) << "|" << left << setw(10) << "Ma sach" << left << setw(2) << "|" << left << setw(15) << "Ten sach" << left << setw(2) << "|" << left << setw(15) << "The loai" << left << setw(2) << "|" << left << setw(14) << "Ngay muon" << left << setw(2) << "|" << left << setw(14) << "Ngay hen tra" << left << setw(2) << "|" << left << setw(12) << "Ngay tra" << left << setw(2) << "|" << left << setw(8) << "So Luong" << left << setw(2) << "|" << left << setw(12) << "Trang thai" << setw(1) << "|" << endl;
 	for (int i = 0; i < m; i++)
@@ -468,7 +518,7 @@ void tongSachMuon_1SV(MuonTra mt[], int m)
 	getline(cin, x);
 	for (int i = 0; i < m; i++)
 	{
-		if (x == mt[i].getMssv() && mt[i].getNgayT().getNgay() == 0)
+		if (x == mt[i].getMssv() && mt[i].getNgayT().ngay == 0)
 		{
 			s = s + mt[i].getSL();
 			tmp1++;
@@ -495,7 +545,7 @@ void tongSachMuon_1SV(MuonTra mt[], int m)
 			cout << left << setw(2) << "|" << left << setw(13) << "Ma sinh vien" << left << setw(2) << "|" << left << setw(22) << "Ho va ten" << left << setw(2) << "|" << left << setw(12) << "Lop" << left << setw(2) << "|" << left << setw(10) << "Ma sach" << left << setw(2) << "|" << left << setw(15) << "Ten sach" << left << setw(2) << "|" << left << setw(15) << "The loai" << left << setw(2) << "|" << left << setw(14) << "Ngay muon" << left << setw(2) << "|" << left << setw(14) << "Ngay hen tra" << left << setw(2) << "|" << left << setw(12) << "Ngay tra" << left << setw(2) << "|" << left << setw(8) << "So Luong" << left << setw(2) << "|" << endl;
 			for (int i = 0; i < m; i++)
 			{
-				if (x == mt[i].getMssv() && mt[i].getNgayT().getNgay() == 0)
+				if (x == mt[i].getMssv() && mt[i].getNgayT().ngay == 0)
 				{
 					mt[i].xuat();
 					cout << "\n";
@@ -516,11 +566,11 @@ void capNhapMT(MuonTra mt[], int m)
 	getline(cin, y);
 	for (int i = 0; i < m; i++)
 	{
-		if (mt[i].getMssv() == x && mt[i].getMaS() == y && mt[i].getNgayT().getNgay() == 0)
+		if (mt[i].getMssv() == x && mt[i].getMaS() == y && mt[i].getNgayT().ngay == 0)
 		{
 			cout << "\nNhap ngay tra: ";
-			cin >> a >> b >> c;
-			mt[i].suaTT(a, b, c);
+			//cin >> a >> b >> c;
+			mt[i].suaTT();
 			//f << mt[i].getNgayT().getNgay() << "/" << mt[i].getNgayT().getThang() << "/" << mt[i].getNgayT().getNam();
 			tmp++;
 		}
@@ -533,7 +583,7 @@ void capNhapMT(MuonTra mt[], int m)
 		f.open("MuonTra_new.txt", ios::app);
 		for (int i = 0; i < m; i++)
 		{
-			f << mt[i].getMssv() << ", " << mt[i].getHoten() << ", " << mt[i].getLop() << ", " << mt[i].getMaS() << ", " << mt[i].getTenS() << ", " << mt[i].getTheLoai() << ", " << mt[i].getNgayM().getNgay() << "/" << mt[i].getNgayM().getThang() << "/" << mt[i].getNgayM().getNam() << ", " << mt[i].getNgayHT().getNgay() << "/" << mt[i].getNgayHT().getThang() << "/" << mt[i].getNgayHT().getNam() << ", " << mt[i].getNgayT().getNgay() << "/" << mt[i].getNgayT().getThang() << "/" << mt[i].getNgayT().getNam() << ", " << mt[i].getSL() << endl;
+			f << mt[i].getMssv() << ", " << mt[i].getHoten() << ", " << mt[i].getLop() << ", " << mt[i].getMaS() << ", " << mt[i].getTenS() << ", " << mt[i].getTheLoai() << ", " << mt[i].getNgayM().ngay << "/" << mt[i].getNgayM().thang << "/" << mt[i].getNgayM().nam << ", " << mt[i].getNgayHT().ngay << "/" << mt[i].getNgayHT().thang << "/" << mt[i].getNgayHT().nam << ", " << mt[i].getNgayT().ngay << "/" << mt[i].getNgayT().thang << "/" << mt[i].getNgayT().nam << ", " << mt[i].getSL() << endl;
 		}
 		tmpf.close();
 		f.close();
@@ -585,7 +635,7 @@ begin:
 		else
 			cin >> chon;
 		k = false;
-	} while ((chon < '1') || (chon > '9'));
+	} while ((chon < '1') || (chon > '7'));
 	doc_file_SV(sv, n);
 	switch (chon) {
 	case '1':
@@ -639,6 +689,11 @@ begin:
 	case '7':
 		goto end;
 		break;
+	//default:
+	//	/*cout << "\nKhong hop le!";
+	//	pressAnyKey();*/
+	//	goto end;
+	//	break;
 	}
 	goto begin;
 end:;
@@ -675,7 +730,7 @@ begin:
 		else
 			cin >> chon;
 		k = false;
-	} while ((chon < '0') || (chon > '9'));
+	} while ((chon < '0') || (chon > '6'));
 	switch (chon) {
 	case '1':
 		them_S(s, p);
@@ -722,6 +777,10 @@ begin:
 	case '6':
 		goto end;
 		break;
+	/*default:
+		cout << "\nKhong hop le!";
+		pressAnyKey();
+		break;*/
 	}
 	goto begin;
 end:;
@@ -730,6 +789,10 @@ end:;
 void QLMT() {
 	MuonTra mt[100];
 	int m;
+	SV sv[100];
+	int n;
+	Sach s[100];
+	int p;
 	fstream f;
 begin:
 	//system("cls");
@@ -760,10 +823,12 @@ begin:
 		else
 			cin >> chon;
 		k = false;
-	} while ((chon < '0') || (chon > '9'));
+	} while ((chon < '0') || (chon > '8'));
 	switch (chon) {
 	case '1':
-		themNM(mt, m);
+		doc_file_SV(sv, n);
+		doc_file_s(s, p);
+		themNM(mt, m, sv, n, s, p);
 		int k;
 		do {
 			cout << "\nXac nhan luu?";
@@ -815,6 +880,10 @@ begin:
 	case '8':
 		goto end;
 		break;
+	/*default:
+		cout << "\nKhong hop le!";
+		pressAnyKey();
+		break;*/
 	}
 	goto begin;
 end:;

@@ -5,3 +5,4 @@
 12345678, Pham Thanh Son, CNTT K62, 222, Naruto, Truyen tranh, 1/10/2022, 20/10/2022, 18/10/2022, 2
 12345683, Erling Haaland, CDT K60, 111, C Co ban, Tin hoc, 1/10/2022, 30/10/2022, 7/11/2022, 1
 12345686, Jack5, QTKD K60, 334, Giai tich 2, Toan hoc, 5/10/2022, 5/11/2022, 0/0/0, 5
+12345678, Pham Thanh Son, CNTT K62, 113, Python, Tin hoc, 15/11/2022, 15/12/2022, 0/0/0, 5

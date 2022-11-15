@@ -126,11 +126,3 @@ void Sach::ghiFileS(fstream& f)
 	f << maS << ", " << tenS << ", " << theLoai << ", " << tacGia << ", " << namXB << ", " << soLuong << endl;
 	f.close();
 }
-
-int Sach::tongS_Conlai()
-{
-	int k=0;
-	/*MuonTra tmp;
-	k = soLuong - tmp*/
-	return k;
-}

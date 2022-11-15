@@ -1,19 +1,146 @@
 #include "date.h"
 
 
-//void nhapNgay(date& x)
+void nhapNgay(date& x)
+{
+nhap:
+	do
+	{
+		cout << "\nNgay: ";
+		cin >> x.ngay;
+		cout << "\nThang: ";
+		cin >> x.thang;
+		cout << "\nNam: ";
+		cin >> x.nam;
+	} while (x.ngay <= 0 || x.thang <= 0 || x.thang > 12 || x.nam <= 0);
+	switch (x.thang)
+	{
+	case 1:
+	case 3:
+	case 5:
+	case 7:
+	case 8:
+	case 10:
+	case 12:
+		if (x.ngay > 31)
+		{
+			goto nhap;
+		}
+		break;
+	case 4:
+	case 6:
+	case 9:
+	case 11:
+		if (x.ngay > 30)
+		{
+			goto nhap;
+		}
+		break;
+	case 2:
+		if ((x.nam % 4 == 0 && x.nam % 100 != 0) || (x.nam % 400 == 0))
+		{
+			if (x.ngay > 29)
+			{
+				goto nhap;
+			}
+		}
+		else
+		{
+			if (x.ngay > 28)
+			{
+				goto nhap;
+			}
+		}
+		break;
+	default:
+		break;
+	}
+}
+
+
+void xuatNgay(date x)
+{
+	cout << x.ngay << "/" << x.thang << "/" << x.nam;
+}
+
+
+bool soSanhNgay(date x1, date x2)
+{
+	if (x1.nam == x2.nam)
+	{
+		if (x1.thang == x2.thang)
+		{
+			if (x1.ngay <= x2.ngay)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else if (x1.thang < x2.thang)
+		{
+			return true;
+		}
+		else
+		{
+			false;
+		}
+	}
+	else if (x1.nam < x2.nam)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+//void date::setNgay(int ngay)
+//{
+//	this->ngay = ngay;
+//}
+//
+//int date::getNgay()
+//{
+//	return ngay;
+//}
+//
+//void date::setThang(int thang)
+//{
+//	this->thang = thang;
+//}
+//
+//int date::getThang()
+//{
+//	return thang;
+//}
+//
+//void date::setNam(int nam)
+//{
+//	this->nam = nam;
+//}
+//
+//int date::getNam()
+//{
+//	return nam;
+//}
+//
+//void nhapNgay(int& a, int& b, int& c)
 //{
 //nhap:
 //	do
 //	{
 //		cout << "\nNgay: ";
-//		cin >> x.ngay;
+//		cin >> a;
 //		cout << "\nThang: ";
-//		cin >> x.thang;
+//		cin >> b;
 //		cout << "\nNam: ";
-//		cin >> x.nam;
-//	} while (x.ngay <= 0 || x.thang <= 0 || x.thang > 12 || x.nam <= 0);
-//	switch (x.thang)
+//		cin >> c;
+//	} while (a <= 0 || b <= 0 || b > 12 || c <= 0);
+//	switch (b)
 //	{
 //	case 1:
 //	case 3:
@@ -22,7 +149,7 @@
 //	case 8:
 //	case 10:
 //	case 12:
-//		if (x.ngay > 31)
+//		if (a > 31)
 //		{
 //			goto nhap;
 //		}
@@ -31,22 +158,22 @@
 //	case 6:
 //	case 9:
 //	case 11:
-//		if (x.ngay > 30)
+//		if (a > 30)
 //		{
 //			goto nhap;
 //		}
 //		break;
 //	case 2:
-//		if ((x.nam % 4 == 0 && x.nam % 100 != 0) || (x.nam % 400 == 0))
+//		if ((c % 4 == 0 && c % 100 != 0) || (c % 400 == 0))
 //		{
-//			if (x.ngay > 29)
+//			if (a > 29)
 //			{
 //				goto nhap;
 //			}
 //		}
 //		else
 //		{
-//			if (x.ngay > 28)
+//			if (a > 28)
 //			{
 //				goto nhap;
 //			}
@@ -56,74 +183,3 @@
 //		break;
 //	}
 //}
-//
-//
-//void xuatNgay(date x)
-//{
-//	cout << x.ngay << "/" << x.thang << "/" << x.nam;
-//}
-//
-//
-//bool soSanhNgay(date x1, date x2)
-//{
-//	if (x2.nam > x1.nam)
-//	{
-//		return false;
-//	}
-//	else if (x2.nam < x1.nam)
-//	{
-//		return true;
-//	}
-//	else
-//	{
-//		if (x2.thang > x1.thang)
-//		{
-//			return false;
-//		}
-//		else if (x2.thang < x1.thang)
-//		{
-//			return true;
-//		}
-//		else
-//		{
-//			if (x2.ngay > x1.ngay)
-//			{
-//				return false;
-//			}
-//			else
-//			{
-//				return true;
-//			}
-//		}
-//	}
-//}
-
-void date::setNgay(int ngay)
-{
-	this->ngay = ngay;
-}
-
-int date::getNgay()
-{
-	return ngay;
-}
-
-void date::setThang(int thang)
-{
-	this->thang = thang;
-}
-
-int date::getThang()
-{
-	return thang;
-}
-
-void date::setNam(int nam)
-{
-	this->nam = nam;
-}
-
-int date::getNam()
-{
-	return nam;
-}

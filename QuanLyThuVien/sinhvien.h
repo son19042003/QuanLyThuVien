@@ -21,6 +21,8 @@ public:
 	void setLop(string lop);
 	string getLop();
 	string checkCard(date x);
+	bool checkID(string x);
+	//void nhapMSSV();
 	void themSV();
 	void xuatSV();
 	bool timKiemSV(string x);

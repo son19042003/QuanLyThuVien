@@ -14,16 +14,24 @@ Nhom 23 - CQ.62.CNTT:
 
 //Sinh Vien
 
-void themSV(SV sv[], int& n)
+void themSV(SV sv[], int &n)
 {
+	string x;
 	do
 	{
-		cout << "\nNhap so luong sinh vien muon them (so luong >= 1): ";
+		cout << "\nNhap so luong sinh vien can them: ";
 		cin >> n;
 	} while (n <= 0);
 	for (int i = 0; i < n; i++)
 	{
 		sv[i].themSV();
+	nhaplai:
+		sv[i].themSV();
+		if (sv[i].checkID(x) == true)
+		{
+			cout << "\nMoi sinh vien chi co 1 ma sinh vien!";
+			goto nhaplai;
+		}
 	}
 }
 
@@ -62,7 +70,6 @@ void doc_file_SV(SV sv[], int &n)
 void xuatDSSV(SV sv[], int n)
 {
 	cout << "\n\n";
-	//cout << left << setw(15) << "Ma sinh vien" << left << setw(25) << "Ho va ten" << left << setw(15) << "Lop" << left << setw(12) << "Ngay het han the" << endl;
 	cout << left << setw(2) << "|" << left << setw(15) << "Ma sinh vien" << left << setw(2) << "|" << left << setw(25) << "Ho va ten" << left << setw(2) << "|" << left << setw(15) << "Lop" << left << setw(2) << "|" << left << setw(20) << "Ngay het han the" << left << setw(2) << "|" << endl;
 	for (int i = 0; i < n; i++)
 	{
@@ -75,12 +82,8 @@ void xuatDSSV(SV sv[], int n)
 void checkCard_ds(SV sv[], int n)
 {
 	date x;
-	//int a = 0, b = 0, c = 0;
 	cout << "\nNhap ngay kiem tra the: ";
 	cin >> x.ngay >> x.thang >> x.nam;
-	/*cin >> a >> b >> c;
-	x.setNgay(a); x.setThang(b); x.setNam(c);*/
-	//cout << left << setw(15) << "Ma sinh vien" << left << setw(25) << "Ho va ten" << left << setw(15) << "Lop" << left << setw(20) << "Ngay het han the" << left << setw(20) << "Tinh trang the" << endl;
 	cout << left << setw(2) << "|" << left << setw(15) << "Ma sinh vien" << left << setw(2) << "|" << left << setw(25) << "Ho va ten" << left << setw(2) << "|" << left << setw(15) << "Lop" << left << setw(2) << "|" << left << setw(20) << "Ngay het han the" << left << setw(2) << "|" << left << setw(20) << "Tinh trang the" << setw(1) << "|" << endl;
 	for (int i = 0; i < n-1; i++)
 	{
@@ -164,8 +167,6 @@ void capNhap_SV(SV sv[], int n)
 		if (sv[i].getMssv() == x)
 		{
 			cout << "\nNhap ngay het han moi: ";
-			//cin >> a >> b >> c;
-			//nhapNgay(a, b, c);
 			sv[i].capNhap();
 			tmp++;
 		}
@@ -276,11 +277,6 @@ void traCuu_sach(Sach s[], int p, MuonTra mt[], int m)
 	getline(cin, x);
 	for (int i = 0; i < p; i++)
 	{
-		/*if (s[i].timS(x) == true)
-		{
-			cout << left << setw(2) << "|" << left << setw(10) << "Ma sach" << left << setw(2) << "|" << left << setw(20) << "Ten sach" << left << setw(2) << "|" << left << setw(15) << "The loai" << left << setw(2) << "|" << left << setw(20) << "Ten tac gia" << left << setw(2) << "|" << left << setw(17) << "Nam xuat ban" << left << setw(2) << "|" << left << setw(8) << "So luong" << left << setw(2) << "|" << endl;
-			s[i].xuatS();
-		}*/
 		if (s[i].timS(x) == true)
 		{
 			for (int j = 0; j < m; j++)
@@ -493,11 +489,8 @@ void tongSachM_ten(MuonTra mt[], int m)
 void kiemTraHanMT(MuonTra mt[], int m)
 {
 	date x;
-	//int a = 0, b = 0, c = 0;
 	cout << "\nNhap ngay kiem tra han tra sach: ";
 	nhapNgay(x);
-	/*cin >> a >> b >> c;
-	x.setNgay(a); x.setThang(b); x.setNam(c);*/
 	cout << "\n\n";
 	cout << left << setw(2) << "|" << left << setw(13) << "Ma sinh vien" << left << setw(2) << "|" << left << setw(22) << "Ho va ten" << left << setw(2) << "|" << left << setw(12) << "Lop" << left << setw(2) << "|" << left << setw(10) << "Ma sach" << left << setw(2) << "|" << left << setw(15) << "Ten sach" << left << setw(2) << "|" << left << setw(15) << "The loai" << left << setw(2) << "|" << left << setw(14) << "Ngay muon" << left << setw(2) << "|" << left << setw(14) << "Ngay hen tra" << left << setw(2) << "|" << left << setw(12) << "Ngay tra" << left << setw(2) << "|" << left << setw(8) << "So Luong" << left << setw(2) << "|" << left << setw(12) << "Trang thai" << setw(1) << "|" << endl;
 	for (int i = 0; i < m; i++)
@@ -569,9 +562,7 @@ void capNhapMT(MuonTra mt[], int m)
 		if (mt[i].getMssv() == x && mt[i].getMaS() == y && mt[i].getNgayT().ngay == 0)
 		{
 			cout << "\nNhap ngay tra: ";
-			//cin >> a >> b >> c;
 			mt[i].suaTT();
-			//f << mt[i].getNgayT().getNgay() << "/" << mt[i].getNgayT().getThang() << "/" << mt[i].getNgayT().getNam();
 			tmp++;
 		}
 	}
@@ -626,15 +617,15 @@ begin:
 	cout << "\n\t\t\t\t\t                   Vui Long Chon Cac Phim Chuc Nang Tuong Ung:   ";
 
 	char chon;
-	bool k = true;
+	bool key = true;
 
 	do
 	{
-		if (k == false)
+		if (key == false)
 			cout << "Vui long nhap lai: ";
 		else
 			cin >> chon;
-		k = false;
+		key = false;
 	} while ((chon < '1') || (chon > '7'));
 	doc_file_SV(sv, n);
 	switch (chon) {

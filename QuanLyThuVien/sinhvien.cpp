@@ -93,11 +93,32 @@ string SV::checkCard(date x)
 	}
 }
 
+bool SV::checkID(string x)
+{
+	if (x == mssv)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+//void SV::nhapMSSV()
+//{
+//	cout << "\nNhap ma sinh vien: ";
+//	cin.ignore();
+//	getline(cin, mssv);
+//}
+
 void SV::themSV()
 {
+	string x;
 	cout << "\nNhap ma sinh vien: ";
 	cin.ignore();
 	getline(cin, mssv);
+	x == mssv;
 	cout << "\nNhap ho ten: ";
 	getline(cin, hoTen);
 	cout << "\nLop: ";

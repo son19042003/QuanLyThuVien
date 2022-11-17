@@ -14,24 +14,35 @@ Nhom 23 - CQ.62.CNTT:
 
 //Sinh Vien
 
-void themSV(SV sv[], int &n)
+void themSV(SV sv[], int &n, SV svn[], int &a)
 {
 	string x;
 	do
 	{
 		cout << "\nNhap so luong sinh vien can them: ";
-		cin >> n;
+		cin >> a;
 	} while (n <= 0);
-	for (int i = 0; i < n; i++)
+	cin.ignore();
+	for (int i = 0; i < a; i++)
 	{
-		sv[i].themSV();
-	nhaplai:
-		sv[i].themSV();
-		if (sv[i].checkID(x) == true)
+	nhap:
+		cout << "\nNhap ma sinh vien: ";
+		getline(cin, x);
+		if (x.size() != 8)
 		{
-			cout << "\nMoi sinh vien chi co 1 ma sinh vien!";
-			goto nhaplai;
+			cout << "\nMa sinh vien phai la 8 ky tu!";
+			goto nhap;
 		}
+		for (int j = 0; j < n; j++)
+		{
+			if (x == sv[j].getMssv())
+			{
+				cout << "\nMa sinh vien nay da ton tai!";
+				goto nhap;
+			}
+		}
+		svn[i].nhapMSSV(x);
+		svn[i].themSV();
 	}
 }
 
@@ -206,17 +217,75 @@ void sapXep_SV(SV sv[], int n)
 }
 
 //Sach
-void them_S(Sach s[], int& p)
+
+void update_S(Sach s[], int p)
 {
+	fstream f, tmpf;
+	tmpf.open("Sach.txt", ios::in);
+	f.open("Sach_new.txt", ios::app);
+	for (int i = 0; i < p; i++)
+	{
+		f << s[i].getMaS() << ", " << s[i].getTenS() << ", " << s[i].getTheLoai() << ", " << s[i].getTacGia() << ", " << s[i].getNamXB() << ", " << s[i].getSL() << endl;
+	}
+	tmpf.close();
+	f.close();
+
+	remove("Sach.txt");
+	rename("Sach_new.txt", "Sach.txt");
+}
+
+void them_S(Sach s[], int& p, Sach sn[], int &q)
+{
+	string x;
+	int tmp;
 	do
 	{
 		cout << "So luong sach can them (so luong >= 1): ";
-		cin >> p;
-	} while (p <= 0);
-	for (int i = 0; i < p; i++)
+		cin >> q;
+	} while (q <= 0);
+	for (int i = 0; i < q; i++)
 	{
-		s[i].themS();
+	nhapS:
+		int c = 0;
+		cout << "\nNhap ma sach: ";
+		cin.ignore();
+		getline(cin, x);
+		if (x.size() != 3)
+		{
+			cout << "\nMa sach phai la 3 ky tu!";
+			goto nhapS;
+		}
+		for (int j = 0; j < p; j++)
+		{
+			if (x == s[j].getMaS())
+			{
+				cout << "\nSach nay da co trong thu vien, nhap so luong sach tang len: ";
+				cin >> tmp;
+				s[j].setSL(s[j].getSL() + tmp);
+				if (i != (q - 1))
+				{
+					q--;
+					c++;
+					update_S(s, p);
+					goto nhapS;
+				}
+				else
+				{
+					q--;
+					update_S(s, p);
+					goto end;
+				}
+			}
+		}
+		sn[i].nhapMS(x);
+		sn[i].themS();
+		if (c != 0)
+		{
+			q--;
+		}
 	}
+end:
+	return;
 }
 
 void luu_S(Sach s[], int p, fstream& f)
@@ -250,13 +319,17 @@ void doc_file_s(Sach s[], int& p)
 
 void xuatDS_S(Sach s[], int p)
 {
+	int tongSL = 0;
 	cout << "\n\n";
 	cout << left << setw(2) << "|" << left << setw(10) << "Ma sach" << left << setw(2) << "|" << left << setw(20) << "Ten sach" << left << setw(2) << "|" << left << setw(15) << "The loai" << left << setw(2) << "|" << left << setw(20) << "Ten tac gia" << left << setw(2) << "|" << left << setw(17) << "Nam xuat ban" << left << setw(2) << "|" << left << setw(10) << "So luong" << left << setw(2) << "|" << endl;
 	for (int i = 0; i < p; i++)
 	{
 		s[i].xuatS();
+		tongSL = tongSL + s[i].getSL();
 		cout << "\n";
 	}
+	cout << "\n";
+	cout << right << setw(94) << "Tong: " << tongSL;
 }
 
 void tongDSS(Sach s[], int p)
@@ -313,18 +386,7 @@ void capNhap_S(Sach s[], int p)
 	if (tmp != 0)
 	{
 		cout << "\nDa cap nhap so luong moi!";
-		fstream f, tmpf;
-		tmpf.open("Sach.txt", ios::in);
-		f.open("Sach_new.txt", ios::app);
-		for (int i = 0; i < p; i++)
-		{
-			f << s[i].getMaS() << ", " << s[i].getTenS() << ", " << s[i].getTheLoai() << ", " << s[i].getTacGia() << ", " << s[i].getNamXB() << ", " << s[i].getSL() << endl;
-		}
-		tmpf.close();
-		f.close();
-
-		remove("Sach.txt");
-		rename("Sach_new.txt", "Sach.txt");
+		update_S(s, p);
 	}
 	else
 	{
@@ -596,8 +658,8 @@ void pressAnyKey() {
 }
 
 void QLSV() {
-	SV sv[100];
-	int n;
+	SV sv[100], svn[100];
+	int n, a;
 	fstream f;
 begin:
 	cout << endl << endl;
@@ -630,7 +692,7 @@ begin:
 	doc_file_SV(sv, n);
 	switch (chon) {
 	case '1':
-		themSV(sv, n);
+		themSV(sv, n, svn, a);
 		int k;
 		do {
 			cout << "\nXac nhan luu?";
@@ -640,7 +702,7 @@ begin:
 		} while (k != 2 && k != 1);
 		if (k == 1)
 		{
-			luuSVdaThem(sv, f, n);
+			luuSVdaThem(svn, f, a);
 			cout << "Luu sinh vien thanh cong!";
 		}
 		if (k == 2)
@@ -691,8 +753,8 @@ end:;
 }
 
 void QLSach() {
-	Sach s[100];
-	int p;
+	Sach s[100], sn[100];
+	int p, q;
 	MuonTra mt[100];
 	int m;
 	fstream f;
@@ -724,7 +786,8 @@ begin:
 	} while ((chon < '0') || (chon > '6'));
 	switch (chon) {
 	case '1':
-		them_S(s, p);
+		doc_file_s(s, p);
+		them_S(s, p, sn, q);
 		int k;
 		do {
 			cout << "\nXac nhan luu?";
@@ -734,7 +797,7 @@ begin:
 		} while (k != 2 && k != 1);
 		if (k == 1)
 		{
-			luu_S(s, p, f);
+			luu_S(sn, q, f);
 			cout << "Luu sach thanh cong!";
 		}
 		if (k == 2)
@@ -804,7 +867,7 @@ begin:
 	cout << "\n\t\t\t\t\t    ========================================================================";
 	cout << "\n\t\t\t\t\t                   Vui Long Chon Cac Phim Chuc Nang Tuong Ung:   ";
 
-	char chon;
+	int chon;
 	bool k = true;
 
 	do
@@ -814,9 +877,9 @@ begin:
 		else
 			cin >> chon;
 		k = false;
-	} while ((chon < '0') || (chon > '8'));
+	} while ((chon < 0) || (chon > 8));
 	switch (chon) {
-	case '1':
+	case 1:
 		doc_file_SV(sv, n);
 		doc_file_s(s, p);
 		themNM(mt, m, sv, n, s, p);
@@ -838,43 +901,43 @@ begin:
 		}
 		pressAnyKey();
 		break;
-	case '2':
+	case 2:
 		doc_file_MT(mt, m);
 		xuatDSMT(mt, m);
 		pressAnyKey();
 		break;
-	case '3':
+	case 3:
 		doc_file_MT(mt, m);
 		tongSachM(mt, m);
 		pressAnyKey();
 		break;
-	case '4':
+	case 4:
 		doc_file_MT(mt, m);
 		tongSachM_ten(mt, m);
 		pressAnyKey();
 		break;
-	case '5':
+	case 5:
 		doc_file_MT(mt, m);
 		kiemTraHanMT(mt, m);
 		pressAnyKey();
 		break;
-	case '6':
+	case 6:
 		doc_file_MT(mt, m);
 		tongSachMuon_1SV(mt, m);
 		pressAnyKey();
 		break;
-	case '7':
+	case 7:
 		doc_file_MT(mt, m);
 		capNhapMT(mt, m);
 		pressAnyKey();
 		break;
-	case '8':
+	case 8:
 		goto end;
 		break;
-	/*default:
+	default:
 		cout << "\nKhong hop le!";
 		pressAnyKey();
-		break;*/
+		break;
 	}
 	goto begin;
 end:;

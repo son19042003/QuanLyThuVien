@@ -63,12 +63,16 @@ int Sach::getSL()
 	return soLuong;
 }
 
+void Sach::nhapMS(string x)
+{
+	maS = x;
+}
 
 void Sach::themS()
 {
-	cout << "\nMa sach: ";
+	/*cout << "\nMa sach: ";
 	cin.ignore();
-	getline(cin, maS);
+	getline(cin, maS);*/
 	cout << "\nTen sach: ";
 	getline(cin, tenS);
 	cout << "\nThe loai: ";

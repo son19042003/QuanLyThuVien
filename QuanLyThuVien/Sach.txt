@@ -1,9 +1,11 @@
-111, C Co ban, Tin hoc, Tac Gia, 2000, 100
+111, C Co ban, Tin hoc, Tac Gia, 2000, 105
 112, C++ Co ban, Tin hoc, Tac Gia, 2000, 100
 113, Python, Tin hoc, A, 1999, 50
-222, Naruto, Truyen tranh, AAA, 1976, 30
+222, Naruto, Truyen tranh, AAA, 1976, 35
 223, Doraemon, Truyen tranh, BBB, 1999, 50
 224, Conan, Truyen tranh, CCC, 1998, 50
 333, Giai tich 1, Toan hoc, DDD, 2003, 100
 334, Giai tich 2, Toan hoc, EEE, 2005, 100
 335, Toan roi rac, Toan hoc, FFF, 2002, 100
+444, Triet hoc, Chinh tri, ..., 1975, 100
+445, Tu tuong Ho Chi Minh, Chinh tri, ..., 1999, 100

@@ -93,36 +93,27 @@ string SV::checkCard(date x)
 	}
 }
 
-bool SV::checkID(string x)
+void SV::nhapMSSV(string x)
 {
-	if (x == mssv)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	mssv = x;
 }
-
-//void SV::nhapMSSV()
-//{
-//	cout << "\nNhap ma sinh vien: ";
-//	cin.ignore();
-//	getline(cin, mssv);
-//}
 
 void SV::themSV()
 {
-	string x;
-	cout << "\nNhap ma sinh vien: ";
-	cin.ignore();
-	getline(cin, mssv);
-	x == mssv;
 	cout << "\nNhap ho ten: ";
 	getline(cin, hoTen);
+label:
 	cout << "\nLop: ";
 	getline(cin, lop);
+	if (lop != "CNTT K60" && lop != "CNTT K61" && lop != "CNTT K62" && lop != "CNTT K63"
+		&& lop != "KTTH K60" && lop != "KTTH K61" && lop != "KTTH K62" && lop != "KTTH K63"
+		&& lop != "QTKD K60" && lop != "QTKD K61" && lop != "QTKD K62" && lop != "QTKD K63"
+		&& lop != "KTCDT K60" && lop != "KTCDT K61" && lop != "KTCDT K62" && lop != "KTCDT K63"
+		&& lop != "KTOTO K60" && lop != "KTOTO K61" && lop != "KTOTO K62" && lop != "KTOTO K63")
+	{
+		cout << "\nLop nay khong ton tai!";
+		goto label;
+	}
 	cout << "\nNhap ngay het han the: ";
 	nhapNgay(ngayHHT);
 }

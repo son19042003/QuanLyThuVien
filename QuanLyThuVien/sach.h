@@ -23,6 +23,7 @@ public:
 	int getNamXB();
 	void setSL(int soLuong);
 	int getSL();
+	void nhapMS(string x);
 	void themS();
 	void xoaS();
 	void xuatS();

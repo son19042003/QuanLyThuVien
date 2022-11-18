@@ -16,6 +16,8 @@ void nhapNgay(date& x);
 
 bool soSanhNgay(date x1, date x2);
 
+int quyDoi(date x);
+
 //class date
 //{
 //private:

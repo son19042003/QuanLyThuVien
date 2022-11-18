@@ -61,7 +61,7 @@ int MuonTra::getSL()
 
 void MuonTra::xuat()
 {
-	cout << left << setw(2) << "|" << left << setw(13) << mssv << left << setw(2) << "|" << left << setw(22) << hoTen << left << setw(2) << "|" << left << setw(12) << lop << left << setw(2) << "|" << left << setw(10) << maS << left << setw(2) << "|" << left << setw(15) << tenS << left << setw(2) << "|" << left << setw(15) << theLoai << left << setw(2) << "|" << right << setw(2) << ngayM.ngay << "/" << right << setw(2) << ngayM.thang << "/" << left << setw(8) << ngayM.nam << left << setw(2) << "|" << right << setw(2) << ngayHT.ngay << "/" << right << setw(2) << ngayHT.thang << "/" << left << setw(8) << ngayHT.nam << left << setw(2) << "|" << right << setw(2) << ngayT.ngay << "/" << right << setw(2) << ngayT.thang << "/" << left << setw(6) << ngayT.nam << left << setw(2) << "|" << left << setw(8) << sl << left << setw(2) << "|";
+	cout << left << setw(2) << "|" << left << setw(12) << mssv << left << setw(2) << "|" << left << setw(20) << hoTen << left << setw(2) << "|" << left << setw(12) << lop << left << setw(2) << "|" << left << setw(8) << maS << left << setw(2) << "|" << left << setw(15) << tenS << left << setw(2) << "|" << left << setw(15) << theLoai << left << setw(2) << "|" << right << setw(2) << ngayM.ngay << "/" << right << setw(2) << ngayM.thang << "/" << left << setw(6) << ngayM.nam << left << setw(2) << "|" << right << setw(2) << ngayHT.ngay << "/" << right << setw(2) << ngayHT.thang << "/" << left << setw(8) << ngayHT.nam << left << setw(2) << "|" << right << setw(2) << ngayT.ngay << "/" << right << setw(2) << ngayT.thang << "/" << left << setw(4) << ngayT.nam << left << setw(2) << "|" << left << setw(8) << sl << left << setw(2) << "|";
 }
 
 void MuonTra::docfileMT(fstream& f)

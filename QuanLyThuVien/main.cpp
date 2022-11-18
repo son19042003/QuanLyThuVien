@@ -21,7 +21,7 @@ void themSV(SV sv[], int &n, SV svn[], int &a)
 	{
 		cout << "\nNhap so luong sinh vien can them: ";
 		cin >> a;
-	} while (n <= 0);
+	} while (a <= 0);
 	cin.ignore();
 	for (int i = 0; i < a; i++)
 	{
@@ -519,7 +519,7 @@ void doc_file_MT(MuonTra mt[], int& m)
 void xuatDSMT(MuonTra mt[], int m)
 {
 	cout << "\n\n";
-	cout << left << setw(2) << "|" << left << setw(13) << "Ma sinh vien" << left << setw(2) << "|" << left << setw(22) << "Ho va ten" << left << setw(2) << "|" << left << setw(12) << "Lop" << left << setw(2) << "|" << left << setw(10) << "Ma sach" << left << setw(2) << "|" << left << setw(15) << "Ten sach" << left << setw(2) << "|" << left << setw(15) << "The loai" << left << setw(2) << "|" << left << setw(14) << "Ngay muon" << left << setw(2) << "|" << left << setw(14) << "Ngay hen tra" << left << setw(2) << "|" << left << setw(12) << "Ngay tra" << left << setw(2) << "|" << left << setw(8) << "So Luong" << left << setw(2) << "|" << endl;
+	cout << left << setw(2) << "|" << left << setw(12) << "Ma sinh vien" << left << setw(2) << "|" << left << setw(20) << "Ho va ten" << left << setw(2) << "|" << left << setw(12) << "Lop" << left << setw(2) << "|" << left << setw(8) << "Ma sach" << left << setw(2) << "|" << left << setw(15) << "Ten sach" << left << setw(2) << "|" << left << setw(15) << "The loai" << left << setw(2) << "|" << left << setw(12) << "Ngay muon" << left << setw(2) << "|" << left << setw(14) << "Ngay hen tra" << left << setw(2) << "|" << left << setw(10) << "Ngay tra" << left << setw(2) << "|" << left << setw(8) << "So Luong" << left << setw(2) << "|" << endl;
 	for (int i = 0; i < m; i++)
 	{
 		mt[i].xuat();
@@ -557,14 +557,35 @@ void tongSachM_ten(MuonTra mt[], int m)
 void kiemTraHanMT(MuonTra mt[], int m)
 {
 	date x;
-	cout << "\nNhap ngay kiem tra han tra sach: ";
-	nhapNgay(x);
+	time_t now = time(0);
+	tm ltm;
+	localtime_s(&ltm, &now);
+	x.nam = 1900 + ltm.tm_year;
+	x.thang = 1 + ltm.tm_mon;
+	x.ngay = ltm.tm_mday;
+	cout << "\nNgay kiem tra: " << x.ngay << "/" << x.thang << "/" << x.nam;
 	cout << "\n\n";
-	cout << left << setw(2) << "|" << left << setw(13) << "Ma sinh vien" << left << setw(2) << "|" << left << setw(22) << "Ho va ten" << left << setw(2) << "|" << left << setw(12) << "Lop" << left << setw(2) << "|" << left << setw(10) << "Ma sach" << left << setw(2) << "|" << left << setw(15) << "Ten sach" << left << setw(2) << "|" << left << setw(15) << "The loai" << left << setw(2) << "|" << left << setw(14) << "Ngay muon" << left << setw(2) << "|" << left << setw(14) << "Ngay hen tra" << left << setw(2) << "|" << left << setw(12) << "Ngay tra" << left << setw(2) << "|" << left << setw(8) << "So Luong" << left << setw(2) << "|" << left << setw(12) << "Trang thai" << setw(1) << "|" << endl;
+	cout << left << setw(2) << "|" << left << setw(12) << "Ma sinh vien" << left << setw(2) << "|" << left << setw(20) << "Ho va ten" << left << setw(2) << "|" << left << setw(12) << "Lop" << left << setw(2) << "|" << left << setw(8) << "Ma sach" << left << setw(2) << "|" << left << setw(15) << "Ten sach" << left << setw(2) << "|" << left << setw(15) << "The loai" << left << setw(2) << "|" << left << setw(12) << "Ngay muon" << left << setw(2) << "|" << left << setw(14) << "Ngay hen tra" << left << setw(2) << "|" << left << setw(10) << "Ngay tra" << left << setw(2) << "|" << left << setw(8) << "So Luong" << left << setw(2) << "|" << left << setw(10) << "Trang thai" << setw(1) << "|" << left << setw(12) << "Tien phat" << setw(1) << "|" << endl;
 	for (int i = 0; i < m; i++)
 	{
 		mt[i].xuat();
-		cout << left << setw(12) << mt[i].kiemTraMT(x) << setw(1) << "|";
+		cout << left << setw(10) << mt[i].kiemTraMT(x) << setw(1) << "|";
+		//cout << left << setw(12) << mt[i].tienPhat() << setw(1) << "|";
+		if (mt[i].kiemTraMT(x) == "Qua han" || mt[i].kiemTraMT(x) == "Tra muon")
+		{
+			if (mt[i].getNgayT().ngay != 0)
+			{
+				cout << left << setw(12) << (quyDoi(mt[i].getNgayT()) - quyDoi(mt[i].getNgayHT())) * 10000 * mt[i].getSL() << setw(1) << "|";
+			}
+			else
+			{
+				cout << left << setw(12) << (quyDoi(x) - quyDoi(mt[i].getNgayHT())) * 10000 * mt[i].getSL() << setw(1) << "|";
+			}
+		}
+		else
+		{
+			cout << left << setw(12) << 0 << setw(1) << "|";
+		}
 		cout << "\n";
 	}
 }
@@ -603,7 +624,7 @@ void tongSachMuon_1SV(MuonTra mt[], int m)
 		}
 		else
 		{
-			cout << left << setw(2) << "|" << left << setw(13) << "Ma sinh vien" << left << setw(2) << "|" << left << setw(22) << "Ho va ten" << left << setw(2) << "|" << left << setw(12) << "Lop" << left << setw(2) << "|" << left << setw(10) << "Ma sach" << left << setw(2) << "|" << left << setw(15) << "Ten sach" << left << setw(2) << "|" << left << setw(15) << "The loai" << left << setw(2) << "|" << left << setw(14) << "Ngay muon" << left << setw(2) << "|" << left << setw(14) << "Ngay hen tra" << left << setw(2) << "|" << left << setw(12) << "Ngay tra" << left << setw(2) << "|" << left << setw(8) << "So Luong" << left << setw(2) << "|" << endl;
+			cout << left << setw(2) << "|" << left << setw(12) << "Ma sinh vien" << left << setw(2) << "|" << left << setw(20) << "Ho va ten" << left << setw(2) << "|" << left << setw(12) << "Lop" << left << setw(2) << "|" << left << setw(8) << "Ma sach" << left << setw(2) << "|" << left << setw(15) << "Ten sach" << left << setw(2) << "|" << left << setw(15) << "The loai" << left << setw(2) << "|" << left << setw(12) << "Ngay muon" << left << setw(2) << "|" << left << setw(14) << "Ngay hen tra" << left << setw(2) << "|" << left << setw(10) << "Ngay tra" << left << setw(2) << "|" << left << setw(8) << "So Luong" << left << setw(2) << "|" << endl;
 			for (int i = 0; i < m; i++)
 			{
 				if (x == mt[i].getMssv() && mt[i].getNgayT().ngay == 0)
@@ -891,7 +912,7 @@ begin:
 		k = false;
 	} while ((chon < '0') || (chon > '9'));
 	switch (chon) {
-	case 1:
+	case '1':
 		doc_file_SV(sv, n);
 		doc_file_s(s, p);
 		themNM(mt, m, sv, n, s, p);
@@ -913,37 +934,37 @@ begin:
 		}
 		pressAnyKey();
 		break;
-	case 2:
+	case '2':
 		doc_file_MT(mt, m);
 		xuatDSMT(mt, m);
 		pressAnyKey();
 		break;
-	case 3:
+	case '3':
 		doc_file_MT(mt, m);
 		tongSachM(mt, m);
 		pressAnyKey();
 		break;
-	case 4:
+	case '4':
 		doc_file_MT(mt, m);
 		tongSachM_ten(mt, m);
 		pressAnyKey();
 		break;
-	case 5:
+	case '5':
 		doc_file_MT(mt, m);
 		kiemTraHanMT(mt, m);
 		pressAnyKey();
 		break;
-	case 6:
+	case '6':
 		doc_file_MT(mt, m);
 		tongSachMuon_1SV(mt, m);
 		pressAnyKey();
 		break;
-	case 7:
+	case '7':
 		doc_file_MT(mt, m);
 		capNhapMT(mt, m);
 		pressAnyKey();
 		break;
-	case 8:
+	case '8':
 		goto end;
 		break;
 	default:

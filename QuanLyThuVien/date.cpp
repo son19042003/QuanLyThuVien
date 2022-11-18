@@ -98,88 +98,16 @@ bool soSanhNgay(date x1, date x2)
 	}
 }
 
-//void date::setNgay(int ngay)
-//{
-//	this->ngay = ngay;
-//}
-//
-//int date::getNgay()
-//{
-//	return ngay;
-//}
-//
-//void date::setThang(int thang)
-//{
-//	this->thang = thang;
-//}
-//
-//int date::getThang()
-//{
-//	return thang;
-//}
-//
-//void date::setNam(int nam)
-//{
-//	this->nam = nam;
-//}
-//
-//int date::getNam()
-//{
-//	return nam;
-//}
-//
-//void nhapNgay(int& a, int& b, int& c)
-//{
-//nhap:
-//	do
-//	{
-//		cout << "\nNgay: ";
-//		cin >> a;
-//		cout << "\nThang: ";
-//		cin >> b;
-//		cout << "\nNam: ";
-//		cin >> c;
-//	} while (a <= 0 || b <= 0 || b > 12 || c <= 0);
-//	switch (b)
-//	{
-//	case 1:
-//	case 3:
-//	case 5:
-//	case 7:
-//	case 8:
-//	case 10:
-//	case 12:
-//		if (a > 31)
-//		{
-//			goto nhap;
-//		}
-//		break;
-//	case 4:
-//	case 6:
-//	case 9:
-//	case 11:
-//		if (a > 30)
-//		{
-//			goto nhap;
-//		}
-//		break;
-//	case 2:
-//		if ((c % 4 == 0 && c % 100 != 0) || (c % 400 == 0))
-//		{
-//			if (a > 29)
-//			{
-//				goto nhap;
-//			}
-//		}
-//		else
-//		{
-//			if (a > 28)
-//			{
-//				goto nhap;
-//			}
-//		}
-//		break;
-//	default:
-//		break;
-//	}
-//}
+
+int quyDoi(date x)
+{
+	if (x.thang < 3)
+	{
+		x.nam--;
+		x.thang += 12;
+	}
+	return 365 * x.nam + x.nam / 4 - x.nam / 100 + x.nam / 400 + (153 * x.thang - 457) / 5 + x.ngay - 306;
+}
+
+//15-12-2022 = 738501
+//7-1-2023 = 738566

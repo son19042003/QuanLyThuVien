@@ -59,36 +59,6 @@ int MuonTra::getSL()
 	return sl;
 }
 
-
-//void MuonTra::them()
-//{
-//	cout << "\nMa sinh vien: ";
-//	cin.ignore();
-//	getline(cin, mssv);
-//	cout << "\nHo ten nguoi muon: ";
-//	getline(cin, hoTen);
-//	cout << "\nLop: ";
-//	getline(cin, lop);
-//	cout << "\nMa sach muon: ";
-//	getline(cin, maS);
-//	cout << "\nTen sach muon: ";
-//	getline(cin, tenS);
-//	cout << "\nThe loai: ";
-//	getline(cin, theLoai);
-//	cout << "\nNgay muon: ";
-//	nhapNgay(ngayM);
-//	/*int nn, tm, nm;
-//	cin >> nn >> tm >> nm;
-//	ngayM.setNgay(nn); ngayM.setThang(tm); ngayM.setNam(nm);*/
-//	cout << "\nNgay hen tra: ";
-//	nhapNgay(ngayHT);
-//	/*int nnht, tht, nht;
-//	cin >> nnht >> tht >> nht;
-//	ngayHT.setNgay(nnht); ngayHT.setThang(tht); ngayHT.setNam(nht);*/
-//	cout << "\nSo luong muon: ";
-//	cin >> sl;
-//}
-
 void MuonTra::xuat()
 {
 	cout << left << setw(2) << "|" << left << setw(13) << mssv << left << setw(2) << "|" << left << setw(22) << hoTen << left << setw(2) << "|" << left << setw(12) << lop << left << setw(2) << "|" << left << setw(10) << maS << left << setw(2) << "|" << left << setw(15) << tenS << left << setw(2) << "|" << left << setw(15) << theLoai << left << setw(2) << "|" << right << setw(2) << ngayM.ngay << "/" << right << setw(2) << ngayM.thang << "/" << left << setw(8) << ngayM.nam << left << setw(2) << "|" << right << setw(2) << ngayHT.ngay << "/" << right << setw(2) << ngayHT.thang << "/" << left << setw(8) << ngayHT.nam << left << setw(2) << "|" << right << setw(2) << ngayT.ngay << "/" << right << setw(2) << ngayT.thang << "/" << left << setw(6) << ngayT.nam << left << setw(2) << "|" << left << setw(8) << sl << left << setw(2) << "|";
@@ -241,6 +211,17 @@ string MuonTra::kiemTraMT(date x)
 
 date MuonTra::suaTT()
 {
-	nhapNgay(ngayT);
-	return ngayT;
+	date x;
+nhapNT:
+	nhapNgay(x);
+	if (soSanhNgay(ngayM, x) == true)
+	{
+		ngayT = x;
+		return ngayT;
+	}
+	else
+	{
+		cout << "\nNgay tra phai lon hon hoac bang ngay muon!";
+		goto nhapNT;
+	}
 }

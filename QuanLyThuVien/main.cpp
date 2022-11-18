@@ -93,8 +93,14 @@ void xuatDSSV(SV sv[], int n)
 void checkCard_ds(SV sv[], int n)
 {
 	date x;
-	cout << "\nNhap ngay kiem tra the: ";
-	cin >> x.ngay >> x.thang >> x.nam;
+	time_t now = time(0);
+	tm ltm;
+	localtime_s(&ltm, &now);
+	x.nam = 1900 + ltm.tm_year;
+	x.thang = 1 + ltm.tm_mon;
+	x.ngay = ltm.tm_mday;
+	cout << "\nNgay kiem tra: " << x.ngay << "/" << x.thang << "/" << x.nam;
+	cout << "\n\n";
 	cout << left << setw(2) << "|" << left << setw(15) << "Ma sinh vien" << left << setw(2) << "|" << left << setw(25) << "Ho va ten" << left << setw(2) << "|" << left << setw(15) << "Lop" << left << setw(2) << "|" << left << setw(20) << "Ngay het han the" << left << setw(2) << "|" << left << setw(20) << "Tinh trang the" << setw(1) << "|" << endl;
 	for (int i = 0; i < n-1; i++)
 	{
@@ -662,6 +668,7 @@ void QLSV() {
 	int n, a;
 	fstream f;
 begin:
+	system("cls");
 	cout << endl << endl;
 	cout << "\n\t\t\t\t\t    ========================================================================";
 	cout << "\n\t\t\t\t\t    ||                          QUAN LY SINH VIEN                         ||";
@@ -684,11 +691,14 @@ begin:
 	do
 	{
 		if (key == false)
-			cout << "Vui long nhap lai: ";
+		{
+			cout << "ERROR!";
+			exit(0);
+		}
 		else
 			cin >> chon;
 		key = false;
-	} while ((chon < '1') || (chon > '7'));
+	} while ((chon < '0') || (chon > '9'));
 	doc_file_SV(sv, n);
 	switch (chon) {
 	case '1':
@@ -742,11 +752,11 @@ begin:
 	case '7':
 		goto end;
 		break;
-	//default:
-	//	/*cout << "\nKhong hop le!";
-	//	pressAnyKey();*/
-	//	goto end;
-	//	break;
+	default:
+		cout << "\nKhong hop le!";
+		pressAnyKey();
+		goto begin;
+		break;
 	}
 	goto begin;
 end:;
@@ -759,16 +769,16 @@ void QLSach() {
 	int m;
 	fstream f;
 begin:
+	system("cls");
 	cout << endl << endl;
 	cout << "\n\t\t\t\t\t    ========================================================================";
 	cout << "\n\t\t\t\t\t    ||                          QUAN LY SACH                              ||";
 	cout << "\n\t\t\t\t\t    ========================================================================";
 	cout << "\n\t\t\t\t\t    ||                 1. Them sach                                       ||";
 	cout << "\n\t\t\t\t\t    ||                 2. Xuat danh sach sach hien co                     ||";
-	cout << "\n\t\t\t\t\t    ||                 3. Tong so luong sach hien co                      ||";
-	cout << "\n\t\t\t\t\t    ||                 4. Cap nhap thong tin sach                         ||";
-	cout << "\n\t\t\t\t\t    ||                 5. Tra cuu thong tin 1 sach bat ky                 ||";
-	cout << "\n\t\t\t\t\t    ||                 6. Tro ve                                          ||";
+	cout << "\n\t\t\t\t\t    ||                 3. Cap nhap thong tin sach                         ||";
+	cout << "\n\t\t\t\t\t    ||                 4. Tra cuu thong tin 1 sach bat ky                 ||";
+	cout << "\n\t\t\t\t\t    ||                 5. Tro ve                                          ||";
 	cout << "\n\t\t\t\t\t    ========================================================================";
 	cout << "\n\t\t\t\t\t    ||                              Nhom 23                               ||";
 	cout << "\n\t\t\t\t\t    ========================================================================";
@@ -779,11 +789,14 @@ begin:
 	do
 	{
 		if (k == false)
-			cout << "Vui long nhap lai:  ";
+		{
+			cout << "ERROR!";
+			exit(0);
+		}
 		else
 			cin >> chon;
 		k = false;
-	} while ((chon < '0') || (chon > '6'));
+	} while ((chon < '0') || (chon > '9'));
 	switch (chon) {
 	case '1':
 		doc_file_s(s, p);
@@ -814,27 +827,23 @@ begin:
 		break;
 	case '3':
 		doc_file_s(s, p);
-		tongDSS(s, p);
-		pressAnyKey();
-		break;
-	case '4':
-		doc_file_s(s, p);
 		capNhap_S(s, p);
 		pressAnyKey();
 		break;
-	case '5':
+	case '4':
 		doc_file_MT(mt, m);
 		doc_file_s(s, p);
 		traCuu_sach(s, p, mt, m);
 		pressAnyKey();
 		break;
-	case '6':
+	case '5':
 		goto end;
 		break;
-	/*default:
+	default:
 		cout << "\nKhong hop le!";
 		pressAnyKey();
-		break;*/
+		goto begin;
+		break;
 	}
 	goto begin;
 end:;
@@ -849,7 +858,7 @@ void QLMT() {
 	int p;
 	fstream f;
 begin:
-	//system("cls");
+	system("cls");
 	cout << endl << endl;
 	cout << "\n\t\t\t\t\t    ========================================================================";
 	cout << "\n\t\t\t\t\t    ||                          QUAN LY MUON TRA                          ||";
@@ -867,17 +876,20 @@ begin:
 	cout << "\n\t\t\t\t\t    ========================================================================";
 	cout << "\n\t\t\t\t\t                   Vui Long Chon Cac Phim Chuc Nang Tuong Ung:   ";
 
-	int chon;
+	char chon;
 	bool k = true;
 
 	do
 	{
 		if (k == false)
-			cout << "Vui long nhap lai: ";
+		{
+			cout << "ERROR!";
+			exit(0);
+		}
 		else
 			cin >> chon;
 		k = false;
-	} while ((chon < 0) || (chon > 8));
+	} while ((chon < '0') || (chon > '9'));
 	switch (chon) {
 	case 1:
 		doc_file_SV(sv, n);
@@ -937,6 +949,7 @@ begin:
 	default:
 		cout << "\nKhong hop le!";
 		pressAnyKey();
+		goto begin;
 		break;
 	}
 	goto begin;
@@ -964,11 +977,14 @@ begin:
 	do
 	{
 		if (k == false)
-			cout << "Vui long nhap lai:  ";
+		{
+			cout << "ERROR!";
+			exit(0);
+		}
 		else
 			cin >> chon;
 		k = false;
-	} while ((chon < '0') || (chon > '3'));
+	} while ((chon < '0') || (chon > '9'));
 
 
 
@@ -987,6 +1003,11 @@ begin:
 		break;
 	case '0':
 		goto end;
+		break;
+	default:
+		cout << "\nKhong hop le!";
+		pressAnyKey();
+		goto begin;
 		break;
 	}
 	goto begin;
